@@ -1,0 +1,4556 @@
+ST STEVENX:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>ROYAL CASINO BD | Premium Aviator • WinGo • Slots</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: radial-gradient(ellipse at 20% 30%, #1a1a3e, #0a0a1a, #02020a);
+            background-attachment: fixed;
+            padding: 20px;
+            color: #eee;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(45deg, rgba(255, 217, 102, 0.02) 0px, rgba(255, 217, 102, 0.02) 2px, transparent 2px, transparent 8px);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 217, 102, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Leaderboard Button */
+        .leaderboard-corner {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+        }
+        .leaderboard-btn {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border: none;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            font-size: 32px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 15px rgba(255,215,0,0.5);
+            transition: transform 0.2s;
+            color: #1a1a2e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .leaderboard-btn:hover { transform: scale(1.05); }
+
+        /* Admin Button */
+        .admin-corner {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 999;
+        }
+        .admin-btn {
+            background: linear-gradient(135deg, #2c3e66, #1a2745);
+            border: none;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            font-size: 28px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            transition: transform 0.2s;
+            color: #FFD966;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #FFD966;
+        }
+        .admin-btn:hover { transform: scale(1.05); }
+
+        /* Leaderboard Modal */
+        .leaderboard-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        .leaderboard-container {
+            background: linear-gradient(145deg, #0f1425, #080c1a);
+            border-radius: 40px;
+            width: 550px;
+            max-width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            border: 2px solid #FFD966;
+            padding: 20px;
+        }
+        .leaderboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #FFD966;
+            padding-bottom: 10px;
+        }
+        .close-leaderboard, .close-admin {
+            background: #dc3545;
+            border: none;
+            color: white;
+            font-size: 24px;
+            width:
+
+40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .leaderboard-tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        .lb-tab {
+            background: rgba(0,0,0,0.5);
+            border: 1px solid #FFD966;
+            padding: 8px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        .lb-tab.active {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #1a1a2e;
+            border: none;
+        }
+        .leaderboard-list, .admin-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .leaderboard-item, .admin-request-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255,255,255,0.05);
+            padding: 12px 18px;
+            border-radius: 60px;
+            border-left: 4px solid #FFD966;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .rank-1 { color: #FFD700; }
+        .rank-2 { color: #C0C0C0; }
+        .rank-3 { color: #CD7F32; }
+        .player-income { color: #FFD966; font-weight: bold; }
+        .admin-actions button {
+            background: linear-gradient(135deg, #28a745, #1e7e34);
+            border: none;
+            padding: 6px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 0 4px;
+        }
+        .admin-actions button.reject {
+            background: linear-gradient(135deg, #dc3545, #b02a37);
+        }
+
+        /* Auth Modal */
+        .auth-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.96);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .auth-container {
+            background: linear-gradient(145deg, #111728, #0a0e1a);
+            border-radius: 48px;
+            padding: 30px 35px;
+            width: 420px;
+            max-width: 90%;
+            border: 2px solid #FFD966;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+        .auth-container input {
+            width: 100%;
+            padding: 14px 18px;
+            margin: 12px 0;
+            background: #1e243b;
+            border: 1px solid #ffd96655;
+            border-radius: 60px;
+            color: white;
+        }
+        .auth-container button {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 60px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Main Dashboard */
+        .dashboard {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: none;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .premium-logo {
+            text-align: center;
+            margin-bottom: 20px;
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+        .logo-icon { font-size: 3rem; display: inline-block; filter: drop-shadow(0 0 10px rgba(255,217,102,0.5)); }
+        .logo-text { font-size: 2.2rem; font-weight: 800; background: linear-gradient(135deg, #FFD700, #FFA500, #FF6B00); -webkit-background-clip: text; background-clip: text; color: transparent; letter-spacing: 2px; }
+        .logo-sub { font-size: 0.7rem; letter-spacing: 4px; color: #FFD966; opacity: 0.8; }
+        @keyframes glowPulse {
+            0% { filter: drop-shadow(0 0 5px rgba(255,217,102,0.3)); }
+            50% { filter: drop-shadow(0 0 20px rgba(255,217,102,0.6)); }
+            100% { filter: drop-shadow(0 0 5px rgba(255,217,102,0.3)); }
+        }
+
+.top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(12px);
+            border-radius: 60px;
+            padding: 10px 25px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 217, 102, 0.5);
+        }
+        .balance-area { background: linear-gradient(135deg, #1a1f3a, #0f1225); padding: 6px 18px; border-radius: 40px; font-weight: bold; border: 1px solid #FFD966; }
+        .user-info { display: flex; gap: 15px; align-items: center; }
+        .logout-btn { background: linear-gradient(135deg, #dc3545, #b02a37); border: none; padding: 6px 16px; border-radius: 40px; cursor: pointer; font-weight: bold; color: white; }
+
+        .bank-section { display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 30px; }
+        .bank-card { flex: 1; background: rgba(0,0,0,0.5); border-radius: 28px; padding: 18px; border: 1px solid #FFD966; backdrop-filter: blur(4px); }
+        .bkash-highlight { border-top: 5px solid #E2136E; }
+        .nagad-highlight { border-top: 5px solid #F5A623; }
+        .bkash-name-box { background: #E2136E20; border: 1px solid #E2136E; border-radius: 40px; padding: 12px; text-align: center; margin: 10px 0; font-weight: bold; }
+        .games-grid { display: flex; flex-wrap: wrap; gap: 25px; margin-top: 15px; }
+        .game-card { flex: 1; min-width: 320px; background: rgba(0,0,0,0.55); border-radius: 32px; padding: 18px; backdrop-filter: blur(5px); border: 1px solid rgba(255, 217, 102, 0.4); transition: transform 0.2s; }
+        .game-card:hover { transform: translateY(-5px); border-color: #FFD966; }
+
+        .premium-crash-multiplier { font-size: 4.2rem; font-weight: 800; text-align: center; background: linear-gradient(145deg, #1a1f3a, #0f1225); border-radius: 60px; padding: 20px; margin-bottom: 20px; font-family: monospace; border: 1px solid rgba(255, 217, 102, 0.4); color: #FFD966; text-shadow: 0 0 10px rgba(255, 217, 102, 0.5); }
+        .premium-history-bubbles { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 15px 0; }
+        .premium-bubble { background: linear-gradient(145deg, #1e2445, #12162e); padding: 6px 16px; border-radius: 40px; font-size: 0.85rem; font-weight: bold; border-left: 3px solid #FFD966; }
+        .plan-selector { display: flex; gap: 15px; justify-content: center; margin: 20px 0; }
+        .plan-btn { padding: 10px 24px; border-radius: 60px; font-weight: bold; cursor: pointer; border: none; font-size: 0.9rem; }
+        .plan-btn.safe { background: linear-gradient(135deg, #1e7e34, #28a745); color: white; }
+        .plan-btn.medium { background: linear-gradient(135deg, #d97706, #f59e0b); color: white; }
+        .plan-btn.aggressive { background: linear-gradient(135deg, #b91c1c, #ef4444); color: white; }
+        .plan-btn.selected { transform: scale(1.05); box-shadow: 0 0 0 3px #FFD966; }
+        .plan-info { text-align: center; font-size: 0.7rem; background: rgba(0,0,0,0.4); padding: 6px; border-radius: 30px; }
+        .bet-row-premium { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 20px 0; }
+        .premium-bet-input { background: #0a0e1f; border: 2px solid #FFD966; padding: 12px 20px; border-radius: 60px; color: white; width: 150px; text-align: center; }
+        .premium-action-btn { background: linear-gradient(135deg, #FFD700, #FFA500); border: none; padding: 12px 28px; border-radius: 60px; font-weight: bold; cursor: pointer; color: #1a1a2e; }
+        .premium-cashout-btn { background: linear-gradient(135deg, #28a745, #1e7e34); color: white; }
+        .premium-result { background: rgba(0,0,0,0.5); padding: 12px; border-radius: 40px; text-align: center; margin: 15px 0; }
+        .timer-premium { background: linear-gradient(145deg, #1a1f3a, #0f1225); border-radius: 60px; padding: 10px 20px; text-align: center; margin-bottom: 20px; border: 1px solid rgba(255, 217, 102, 0.4); }
+        .timer-value-premium { font-size: 2.2rem;
+
+font-weight: 800; font-family: monospace; background: linear-gradient(135deg, #FFD966, #FFA500); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .premium-wheel { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 20px 0; }
+        .premium-number { width: 55px; height: 55px; background: linear-gradient(145deg, #1e2445, #12162e); border-radius: 30px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.3rem; border: 1px solid rgba(255, 217, 102, 0.3); }
+        .premium-number.winning { background: linear-gradient(145deg, #FFD700, #FFA500); transform: scale(1.08); color: #1a1a2e; }
+        .premium-color-group { display: flex; justify-content: center; gap: 20px; margin: 20px 0; }
+        .premium-color-btn { padding: 12px 28px; border-radius: 60px; font-weight: bold; cursor: pointer; border: none; }
+        .premium-color-btn.green { background: linear-gradient(135deg, #28a745, #1e7e34); color: white; }
+        .premium-color-btn.violet { background: linear-gradient(135deg, #8b5cf6, #6d28d9); color: white; }
+        .premium-color-btn.red { background: linear-gradient(135deg, #ef4444, #b91c1c); color: white; }
+        .premium-color-btn.selected { transform: scale(1.05); box-shadow: 0 0 0 3px #FFD966; }
+        .premium-multipliers { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 20px 0; }
+        .premium-mult-btn { background: rgba(0,0,0,0.6); border: 1px solid #FFD966; padding: 8px 18px; border-radius: 50px; font-weight: bold; cursor: pointer; color: #FFD966; }
+        .premium-mult-btn.selected { background: linear-gradient(135deg, #FFD700, #FFA500); color: #1a1a2e; border: none; }
+        .premium-bs-group { display: flex; justify-content: center; gap: 25px; margin: 20px 0; }
+        .premium-bs-btn { background: linear-gradient(145deg, #1e2745, #121833); padding: 10px 32px; border-radius: 60px; font-weight: bold; cursor: pointer; border: 1px solid rgba(255, 217, 102, 0.5); }
+        .premium-bs-btn.selected { background: linear-gradient(135deg, #FFD700, #FFA500); color: #1a1a2e; border: none; }
+        .premium-bet-area { display: flex; justify-content: center; gap: 15px; margin: 20px 0; flex-wrap: wrap; }
+        .premium-bet-input-sm { background: #0a0e1f; border: 2px solid #FFD966; padding: 12px 20px; border-radius: 60px; color: white; width: 140px; text-align: center; }
+        .premium-place-btn { background: linear-gradient(135deg, #FFD700, #FFA500); border: none; padding: 12px 28px; border-radius: 60px; font-weight: bold; cursor: pointer; }
+        .premium-history { background: rgba(0,0,0,0.4); border-radius: 40px; padding: 12px; margin-top: 15px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+        .history-chip { background: linear-gradient(145deg, #1e2445, #12162e); padding: 5px 14px; border-radius: 40px; border-left: 3px solid #FFD966; }
+        .slot-reels { display: flex; justify-content: center; gap: 20px; margin: 15px; }
+        .reel { background: #00000099; width: 80px; padding: 18px; border-radius: 20px; font-size: 2.4rem; text-align: center; border: 1px solid #FFD966; }
+        .bet-input { background: #0f1222; border: 1px solid #FFD966; padding: 10px; border-radius: 40px; color: white; width: 130px; text-align: center; }
+        .game-action { background: linear-gradient(135deg, #FFD700, #FFA500); border: none; padding: 10px 20px; border-radius: 40px; font-weight: bold; cursor: pointer; }
+        footer { text-align: center; margin-top: 35px; font-size: 0.7rem; color: #aaa; }
+    </style>
+</head>
+<body>
+
+<!-- SIGNUP / LOGIN MODAL -->
+<div id="authOverlay" class="auth-overlay">
+    <div class="auth-container">
+        <div class="premium-logo" style="margin-bottom: 15px;">
+            <div class="logo-icon">👑</div>
+            <div class="logo-text" style="font-size: 1.8rem;">ROYAL CASINO BD</div>
+        </div>
+        <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+            <button id="showLoginBtn" style="background:
+
+#FFD966;">LOGIN</button>
+            <button id="showSignupBtn" style="background: #333; color:white;">SIGNUP</button>
+        </div>
+        <div id="loginForm">
+            <input type="text" id="loginUsername" placeholder="Username">
+            <input type="password" id="loginPassword" placeholder="Password">
+            <button id="doLoginBtn">🔐 LOGIN</button>
+            <div id="loginError"></div>
+        </div>
+        <div id="signupForm" style="display: none;">
+            <input type="text" id="signupUsername" placeholder="Username">
+            <input type="password" id="signupPassword" placeholder="Password">
+            <input type="password" id="signupConfirm" placeholder="Confirm">
+            <button id="doSignupBtn">✨ CREATE</button>
+            <div id="signupError"></div>
+        </div>
+        <div class="switch-auth" id="switchToSignup" style="margin-top:15px; cursor:pointer;">New? <span style="color:#FFD966;">Create Account</span></div>
+    </div>
+</div>
+
+<!-- LEADERBOARD MODAL -->
+<div id="leaderboardModal" class="leaderboard-modal">
+    <div class="leaderboard-container">
+        <div class="leaderboard-header"><h2>🏆 TOP 10</h2><button class="close-leaderboard" id="closeLeaderboardBtn">✕</button></div>
+        <div class="leaderboard-tabs">
+            <div class="lb-tab active" data-period="daily">📅 DAILY</div>
+            <div class="lb-tab" data-period="weekly">📆 WEEKLY</div>
+            <div class="lb-tab" data-period="yearly">📊 YEARLY</div>
+        </div>
+        <div id="leaderboardList" class="leaderboard-list"><div class="no-data">Loading...</div></div>
+    </div>
+</div>
+
+<!-- ADMIN DASHBOARD MODAL -->
+<div id="adminModal" class="leaderboard-modal">
+    <div class="leaderboard-container" style="width: 700px;">
+        <div class="leaderboard-header"><h2>👑 ADMIN DASHBOARD</h2><button class="close-admin" id="closeAdminBtn">✕</button></div>
+        <div style="margin-bottom: 20px;">
+            <div style="display: flex; gap: 10px; border-bottom: 1px solid #FFD966; padding-bottom: 10px;">
+                <button id="adminDepositsTab" style="background:#FFD966; color:#1a1a2e; padding:8px 20px; border-radius:30px; border:none; cursor:pointer;">💸 Deposit Requests</button>
+                <button id="adminWithdrawsTab" style="background:#333; padding:8px 20px; border-radius:30px; border:none; cursor:pointer;">🏧 Withdraw Requests</button>
+                <button id="adminUsersTab" style="background:#333; padding:8px 20px; border-radius:30px; border:none; cursor:pointer;">👥 Users</button>
+            </div>
+        </div>
+        <div id="adminDepositsList" class="admin-list"></div>
+        <div id="adminWithdrawsList" class="admin-list" style="display: none;"></div>
+        <div id="adminUsersList" class="admin-list" style="display: none;"></div>
+    </div>
+</div>
+
+<!-- CORNER BUTTONS -->
+<div class="leaderboard-corner"><button class="leaderboard-btn" id="leaderboardBtn">🏆</button></div>
+<div class="admin-corner"><button class="admin-btn" id="adminBtn">👑</button></div>
+
+<!-- MAIN DASHBOARD -->
+<div class="dashboard" id="mainDashboard">
+    <div class="premium-logo">
+        <div class="logo-icon">👑✨🎰</div>
+        <div class="logo-text">ROYAL CASINO BD</div>
+        <div class="logo-sub">PREMIUM GAMING • TRUSTED • EXCLUSIVE</div>
+    </div>
+    
+    <div class="top-header">
+        <div class="balance-area">💰 Balance: <span id="userBalance">0.00</span> ৳</div>
+        <div class="user-info">
+            <div style="background:#2c3e66; padding:6px 14px; border-radius:40px;" id="userGreeting">Guest</div>
+            <button class="logout-btn" id="logoutBtn">🚪 Logout</button>
+        </div>
+    </div>
+
+    <div class="bank-section">
+        <div class="bank-card bkash-highlight">
+            <h3>📱 Bkash Deposit</h3>
+            <div class="bkash-name-box">💸 Send Money to: <strong>ROYAL CASINO BD</strong><br><span style="font-size:0.8rem;">Number: 01860909272</span></div>
+            <input type="number" id="depositAmount" placeholder="Amount ৳" value="500">
+            <textarea
+
+id="transactionId" rows="1" placeholder="Transaction ID"></textarea>
+            <button id="depositBtn">Submit Deposit</button>
+            <div id="depositMsg" style="font-size:12px;"></div>
+        </div>
+        <div class="bank-card nagad-highlight">
+            <h3>🏧 Withdraw</h3>
+            <select id="withdrawMethod"><option value="bkash">Bkash</option><option value="nagad">Nagad</option></select>
+            <input type="text" id="withdrawNumber" placeholder="Account Number">
+            <input type="number" id="withdrawAmount" placeholder="Amount ৳" value="500">
+            <button id="withdrawBtn">Request Withdraw</button>
+            <div id="withdrawMsg" style="font-size:12px;"></div>
+        </div>
+    </div>
+
+    <div class="games-grid">
+        <div class="game-card" style="border: 2px solid #FFD700;">
+            <h2>✈️ PREMIUM AVIATOR <span style="background:#ff8800; padding:2px 12px; border-radius:30px; font-size:0.7rem;">SLOW • ELITE</span></h2>
+            <div class="premium-crash-multiplier" id="crashMultPremium">1.00x</div>
+            <div class="premium-history-bubbles" id="multiplierHistoryPremium"></div>
+            <div class="plan-selector">
+                <button class="plan-btn safe" data-plan="safe">🛡️ SAFE PLAN</button>
+                <button class="plan-btn medium" data-plan="medium">⚡ MEDIUM PLAN</button>
+                <button class="plan-btn aggressive" data-plan="aggressive">🔥 AGGRESSIVE PLAN</button>
+            </div>
+            <div class="plan-info" id="planInfoText">🎯 Safe Plan: Target 1.2x - 2.5x | Early cashout recommended</div>
+            <div class="auto-cashout-premium" style="text-align:center; margin:10px;">🎯 AUTO CASHOUT: <input type="number" id="autoCashoutPremium" value="1.80" step="0.1" style="width:100px; background:#0a0e1f; border:1px solid #FFD966; padding:6px; border-radius:30px; color:white;"></div>
+            <div class="bet-row-premium">
+                <input type="number" id="crashBetPremium" class="premium-bet-input" value="100">
+                <button class="premium-action-btn" id="startCrashPremium">🚀 TAKE FLIGHT</button>
+                <button class="premium-action-btn premium-cashout-btn" id="cashoutBtnPremium" disabled>💰 CASHOUT</button>
+            </div>
+            <div id="crashResultPremium" class="premium-result">✨ Select a plan & start flying</div>
+            <div class="premium-bet-history" id="userBetHistoryPremium"></div>
+        </div>
+
+        <div class="game-card">
+            <h2>🎨 WinGo • PREMIUM TRADING</h2>
+            <div class="timer-premium"><div style="font-size:0.7rem;">NEXT ROUND</div><div class="timer-value-premium" id="wingoTimerPremium">0:30</div></div>
+            <div class="premium-wheel" id="wingoWheelPremium"></div>
+            <div class="premium-color-group">
+                <div class="premium-color-btn green" data-wing-color="green">🟢 GREEN 2x</div>
+                <div class="premium-color-btn violet" data-wing-color="violet">🟣 VIOLET 4.5x</div>
+                <div class="premium-color-btn red" data-wing-color="red">🔴 RED 2x</div>
+            </div>
+            <div class="premium-wheel" id="wingoNumberPremium"></div>
+            <div class="premium-multipliers">
+                <div class="premium-mult-btn" data-mult="1">x1</div><div class="premium-mult-btn" data-mult="5">x5</div>
+                <div class="premium-mult-btn" data-mult="10">x10</div><div class="premium-mult-btn" data-mult="20">x20</div>
+                <div class="premium-mult-btn" data-mult="50">x50</div><div class="premium-mult-btn" data-mult="100">x100</div>
+            </div>
+            <div class="premium-bs-group">
+                <div class="premium-bs-btn" data-bs="big">🔴 BIG (5-9)</div>
+                <div class="premium-bs-btn" data-bs="small">🔵 SMALL (0-4)</div>
+            </div>
+            <div class="premium-bet-area">
+                <input type="number" id="wingoBetPremium" class="premium-bet-input-sm" value="50">
+                <button class="premium-place-btn" id="wingoPlacePremium">🎲 PLACE
+
+BET</button>
+            </div>
+            <div id="wingoResultPremium" class="premium-result">✨ Place your bet</div>
+            <div class="premium-history" id="wingoHistoryPremium"></div>
+        </div>
+
+        <div class="game-card">
+            <h2>🎰 SLOT MACHINE</h2>
+            <div class="slot-reels"><div class="reel">🍒</div><div class="reel">🍒</div><div class="reel">🍒</div></div>
+            <div style="text-align:center;"><input id="slotBet" class="bet-input" value="50" style="width:100px;"> ৳</div>
+            <button class="game-action" id="spinBtn">🌀 SPIN</button>
+            <div id="slotResult" class="result-area"></div>
+        </div>
+    </div>
+    <footer>👑 ROYAL CASINO BD | Premium Gaming Experience | Admin Dashboard: Approve Deposits & Withdrawals</footer>
+</div>
+
+<script>
+    // ======================= STORAGE KEYS =======================
+    const USERS_KEY = "royal_casino_bd_users";
+    const SESSION_KEY = "royal_casino_bd_session";
+    const EARNINGS_KEY = "royal_leaderboard_earnings";
+    const DEPOSITS_KEY = "royal_deposits_bd";
+    const WITHDRAWS_KEY = "royal_withdraws_bd";
+    
+    // Admin credentials
+    const ADMIN_USERNAME = "admin";
+    const ADMIN_PASSWORD = "admin123";
+    
+    let currentUser = null;
+    let userBalance = 0;
+    let isAdminMode = false;
+    
+    // ======================= LEADERBOARD FUNCTIONS =======================
+    function getEarningsData(){ let d=localStorage.getItem(EARNINGS_KEY); return d?JSON.parse(d):{}; }
+    function saveEarningsData(d){ localStorage.setItem(EARNINGS_KEY,JSON.stringify(d)); }
+    function resetIfNeeded(){ let e=getEarningsData(); let n=Date.now(); let ch=false; for(let u in e){ if(!e[u].lastDailyReset) e[u].lastDailyReset=n; if(!e[u].lastWeeklyReset) e[u].lastWeeklyReset=n; if(!e[u].lastYearlyReset) e[u].lastYearlyReset=n; if(n-e[u].lastDailyReset>86400000){ e[u].daily=0; e[u].lastDailyReset=n; ch=true; } if(n-e[u].lastWeeklyReset>604800000){ e[u].weekly=0; e[u].lastWeeklyReset=n; ch=true; } if(n-e[u].lastYearlyReset>31536000000){ e[u].yearly=0; e[u].lastYearlyReset=n; ch=true; } } if(ch) saveEarningsData(e); }
+    function addEarning(username,amt){ if(!username||amt<=0||username===ADMIN_USERNAME) return; let e=getEarningsData(); if(!e[username]) e[username]={daily:0,weekly:0,yearly:0,lastDailyReset:Date.now(),lastWeeklyReset:Date.now(),lastYearlyReset:Date.now()}; e[username].daily+=amt; e[username].weekly+=amt; e[username].yearly+=amt; saveEarningsData(e); resetIfNeeded(); }
+    function getTopUsers(period,limit=10){ let e=getEarningsData(); resetIfNeeded(); let arr=[]; for(let u in e){ if(u===ADMIN_USERNAME) continue; let v=e[u][period]||0; if(v>0) arr.push({username:u,income:v}); } arr.sort((a,b)=>b.income-a.income); return arr.slice(0,limit); }
+    function renderLeaderboard(period){ let top=getTopUsers(period,10); let c=document.getElementById("leaderboardList"); if(!c) return; if(top.length===0){ c.innerHTML='<div class="no-data">📭 No data</div>'; return; } c.innerHTML=top.map((u,i)=>`<div class="leaderboard-item"><div class="${i===0?'rank-1':i===1?'rank-2':i===2?'rank-3':''}">#${i+1}</div><div>👤 ${u.username}</div><div class="player-income">💰 ${u.income.toFixed(2)} ৳</div></div>`).join(''); }
+    
+    // ======================= DEPOSIT/WITHDRAW FUNCTIONS =======================
+    function loadDeposits(){ let d=localStorage.getItem(DEPOSITS_KEY); return d?JSON.parse(d):[]; }
+    function saveDeposits(d){ localStorage.setItem(DEPOSITS_KEY,JSON.stringify(d)); }
+    function loadWithdraws(){ let w=localStorage.getItem(WITHDRAWS_KEY); return w?JSON.parse(w):[]; }
+    function saveWithdraws(w){ localStorage.setItem(WITHDRAWS_KEY,JSON.stringify(w)); }
+    
+    // ======================= AUTH SYSTEM =======================
+    function loadUsers(){ let u=localStorage.getItem(USERS_KEY); if(!u){ let defaultUsers = { "steven": { password: "steven123", balance: 0 }, "admin": { password: "admin123", balance: 0, isAdmin: true } }; localStorage.setItem(USERS_KEY,JSON.stringify(defaultUsers)); return defaultUsers; } return
+
+JSON.parse(u); }
+    function saveUsers(u){ localStorage.setItem(USERS_KEY,JSON.stringify(u)); }
+    function getSession(){ let s=localStorage.getItem(SESSION_KEY); if(s){ let d=JSON.parse(s); if(d&&d.username){ let users=loadUsers(); if(users[d.username]){ currentUser=d.username; userBalance=users[currentUser].balance||0; isAdminMode = (currentUser === ADMIN_USERNAME); return true; } } } return false; }
+    function saveSession(u){ localStorage.setItem(SESSION_KEY,JSON.stringify({username:u})); currentUser=u; let users=loadUsers(); userBalance=users[u]?.balance||0; isAdminMode = (u === ADMIN_USERNAME); updateUI(); }
+    function clearSession(){ localStorage.removeItem(SESSION_KEY); currentUser=null; userBalance=0; isAdminMode=false; }
+    function updateUI(){ document.getElementById("userBalance").innerText=userBalance.toFixed(2); if(currentUser){ let users=loadUsers(); if(users[currentUser]){ users[currentUser].balance=userBalance; saveUsers(users); } } document.getElementById("userGreeting").innerText=`👤 ${currentUser||"Guest"}`; }
+    function addBalance(a){ if(a>0&&currentUser&&currentUser!==ADMIN_USERNAME){ userBalance+=a; updateUI(); return true; } return false; }
+    function subBalance(a){ if(a>0&&currentUser&&currentUser!==ADMIN_USERNAME&&userBalance>=a){ userBalance-=a; updateUI(); return true; } return false; }
+    function addWinWithLeaderboard(amt){ if(addBalance(amt)){ if(currentUser) addEarning(currentUser,amt); return true; } return false; }
+    
+    // ======================= ADMIN DASHBOARD RENDER =======================
+    function renderAdminDeposits(){ let deposits=loadDeposits(); let container=document.getElementById("adminDepositsList"); if(!container) return; if(deposits.length===0){ container.innerHTML='<div class="no-data">No deposit requests</div>'; return; } container.innerHTML=deposits.filter(d=>d.status==="pending").map(d=>`<div class="admin-request-item"><div><strong>👤 ${d.username}</strong><br>💰 ${d.amount} ৳<br>🆔 ${d.transactionId}</div><div class="admin-actions"><button onclick="approveDeposit('${d.id}')">✅ Approve</button><button class="reject" onclick="rejectDeposit('${d.id}')">❌ Reject</button></div></div>`).join(''); }
+    function renderAdminWithdraws(){ let withdraws=loadWithdraws(); let container=document.getElementById("adminWithdrawsList"); if(!container) return; if(withdraws.length===0){ container.innerHTML='<div class="no-data">No withdrawal requests</div>'; return; } container.innerHTML=withdraws.filter(w=>w.status==="pending").map(w=>`<div class="admin-request-item"><div><strong>👤 ${w.username}</strong><br>💰 ${w.amount} ৳<br>📱 ${w.method}: ${w.accountNumber}</div><div class="admin-actions"><button onclick="approveWithdraw('${w.id}')">✅ Approve</button><button class="reject" onclick="rejectWithdraw('${w.id}')">❌ Reject</button></div></div>`).join(''); }
+    function renderAdminUsers(){ let users=loadUsers(); let container=document.getElementById("adminUsersList"); if(!container) return; let userList=[]; for(let u in users){ if(u!==ADMIN_USERNAME) userList.push({username:u,balance:users[u].balance}); } if(userList.length===0){ container.innerHTML='<div class="no-data">No users</div>'; return; } container.innerHTML=userList.map(u=>`<div class="admin-request-item"><div><strong>👤 ${u.username}</strong><br>💰 Balance: ${u.balance.toFixed(2)} ৳</div><div class="admin-actions"><button onclick="editUserBalance('${u.username}')">💰 Edit Balance</button></div></div>`).join(''); }
+    
+    window.approveDeposit = function(id){ let deposits=loadDeposits(); let idx=deposits.findIndex(d=>d.id==id); if(idx!==-1 && deposits[idx].status==="pending"){ deposits[idx].status="approved"; deposits[idx].processed=false; saveDeposits(deposits); let user=deposits[idx].username; let users=loadUsers(); if(users[user]){ users[user].balance = (users[user].balance || 0) + deposits[idx].amount; saveUsers(users); if(currentUser===user){ userBalance=users[user].balance; updateUI(); } } renderAdminDeposits(); } };
+    window.rejectDeposit = function(id){ let deposits=loadDeposits();
+
+deposits=deposits.filter(d=>d.id!=id); saveDeposits(deposits); renderAdminDeposits(); };
+    window.approveWithdraw = function(id){ let withdraws=loadWithdraws(); let idx=withdraws.findIndex(w=>w.id==id); if(idx!==-1 && withdraws[idx].status==="pending"){ withdraws[idx].status="approved"; saveWithdraws(withdraws); renderAdminWithdraws(); } };
+    window.rejectWithdraw = function(id){ let withdraws=loadWithdraws(); withdraws=withdraws.filter(w=>w.id!=id); saveWithdraws(withdraws); renderAdminWithdraws(); };
+    window.editUserBalance = function(username){ let newBal=prompt(`Enter new balance for ${username}:`); if(newBal!==null && !isNaN(parseFloat(newBal))){ let users=loadUsers(); if(users[username]){ users[username].balance=parseFloat(newBal); saveUsers(users); if(currentUser===username){ userBalance=users[username].balance; updateUI(); } renderAdminUsers(); } } };
+    
+    // ======================= MODAL CONTROLS =======================
+    const leaderboardModal=document.getElementById("leaderboardModal"), adminModal=document.getElementById("adminModal");
+    const leaderboardBtn=document.getElementById("leaderboardBtn"), adminBtn=document.getElementById("adminBtn");
+    const closeLB=document.getElementById("closeLeaderboardBtn"), closeAdmin=document.getElementById("closeAdminBtn");
+    leaderboardBtn.onclick=()=>{ renderLeaderboard('daily'); leaderboardModal.style.display="flex"; };
+    adminBtn.onclick=()=>{ if(currentUser===ADMIN_USERNAME){ renderAdminDeposits(); renderAdminWithdraws(); renderAdminUsers(); document.getElementById("adminDepositsList").style.display="block"; document.getElementById("adminWithdrawsList").style.display="none"; document.getElementById("adminUsersList").style.display="none"; adminModal.style.display="flex"; } else { alert("Admin access only! Login as admin"); } };
+    closeLB.onclick=()=>leaderboardModal.style.display="none";
+    closeAdmin.onclick=()=>adminModal.style.display="none";
+    window.onclick=(e)=>{ if(e.target===leaderboardModal) leaderboardModal.style.display="none"; if(e.target===adminModal) adminModal.style.display="none"; };
+    document.querySelectorAll(".lb-tab").forEach(t=>{ t.onclick=()=>{ document.querySelectorAll(".lb-tab").forEach(tt=>tt.classList.remove("active")); t.classList.add("active"); renderLeaderboard(t.getAttribute("data-period")); }; });
+    document.getElementById("adminDepositsTab").onclick=()=>{ document.getElementById("adminDepositsList").style.display="block"; document.getElementById("adminWithdrawsList").style.display="none"; document.getElementById("adminUsersList").style.display="none"; renderAdminDeposits(); };
+    document.getElementById("adminWithdrawsTab").onclick=()=>{ document.getElementById("adminDepositsList").style.display="none"; document.getElementById("adminWithdrawsList").style.display="block"; document.getElementById("adminUsersList").style.display="none"; renderAdminWithdraws(); };
+    document.getElementById("adminUsersTab").onclick=()=>{ document.getElementById("adminDepositsList").style.display="none"; document.getElementById("adminWithdrawsList").style.display="none"; document.getElementById("adminUsersList").style.display="block"; renderAdminUsers(); };
+    
+    // ======================= AUTH UI =======================
+    const authOverlay=document.getElementById("authOverlay"), dashboard=document.getElementById("mainDashboard");
+    const loginForm=document.getElementById("loginForm"), signupForm=document.getElementById("signupForm");
+    const showLogin=document.getElementById("showLoginBtn"), showSignup=document.getElementById("showSignupBtn"), switchBtn=document.getElementById("switchToSignup");
+    function showAuth(){ authOverlay.style.display="flex"; dashboard.style.display="none"; loginForm.style.display="block"; signupForm.style.display="none"; }
+    function hideAuth(){ authOverlay.style.display="none"; dashboard.style.display="block"; }
+    document.getElementById("doSignupBtn").onclick=()=>{ let u=document.getElementById("signupUsername").value.trim(), p=document.getElementById("signupPassword").value,
+
+c=document.getElementById("signupConfirm").value; if(!u||!p) return; if(p!==c) return; let users=loadUsers(); if(users[u]){ document.getElementById("signupError").innerText="Username exists"; return; } users[u]={password:p,balance:0}; saveUsers(users); document.getElementById("signupError").innerText="✅ Created! Login"; setTimeout(()=>showLogin.click(),1000); };
+    document.getElementById("doLoginBtn").onclick=()=>{ let u=document.getElementById("loginUsername").value.trim(), p=document.getElementById("loginPassword").value; let users=loadUsers(); if(users[u]&&users[u].password===p){ saveSession(u); userBalance=users[u].balance; updateUI(); hideAuth(); resetAllGames(); } else { document.getElementById("loginError").innerText="Invalid credentials"; } };
+    document.getElementById("logoutBtn").onclick=()=>{ clearSession(); showAuth(); resetAllGames(); };
+    showLogin.onclick=()=>{ loginForm.style.display="block"; signupForm.style.display="none"; showLogin.style.background="#FFD966"; showSignup.style.background="#333"; };
+    showSignup.onclick=()=>{ loginForm.style.display="none"; signupForm.style.display="block"; showSignup.style.background="#FFD966"; showLogin.style.background="#333"; };
+    switchBtn.onclick=()=>showSignup.click();
+    
+    // Deposit/Withdraw user actions
+    document.getElementById("depositBtn")?.addEventListener("click",()=>{ if(!currentUser||currentUser===ADMIN_USERNAME){ alert("Please login as regular user"); return; } let amt=parseFloat(document.getElementById("depositAmount").value); let txn=document.getElementById("transactionId").value.trim(); if(amt<100||!txn){ document.getElementById("depositMsg").innerHTML="Min 100 & TXN ID"; return; } let deposits=loadDeposits(); deposits.push({id:Date.now(),username:currentUser,amount:amt,transactionId:txn,status:"pending"}); saveDeposits(deposits); document.getElementById("depositMsg").innerHTML="✅ Deposit request sent to admin!"; setTimeout(()=>document.getElementById("depositMsg").innerHTML="",3000); document.getElementById("transactionId").value=""; });
+    document.getElementById("withdrawBtn")?.addEventListener("click",()=>{ if(!currentUser||currentUser===ADMIN_USERNAME){ alert("Please login as regular user"); return; } let amt=parseFloat(document.getElementById("withdrawAmount").value); let num=document.getElementById("withdrawNumber").value.trim(); let method=document.getElementById("withdrawMethod").value; if(amt<100||!num||amt>userBalance){ document.getElementById("withdrawMsg").innerHTML="Invalid amount or insufficient balance"; return; } let withdraws=loadWithdraws(); withdraws.push({id:Date.now(),username:currentUser,amount:amt,accountNumber:num,method:method,status:"pending"}); saveWithdraws(withdraws); document.getElementById("withdrawMsg").innerHTML="✅ Withdraw request sent to admin!"; setTimeout(()=>document.getElementById("withdrawMsg").innerHTML="",3000); document.getElementById("withdrawNumber").value=""; });
+    
+    // ======================= GAME FUNCTIONS (Simplified for space) =======================
+    let crashIntervalPremium=null, crashActivePremium=false, crashBetAmtPremium=0, crashMultPremium=1;
+    let multiplierHistoryPremium=[], userBetHistoryPremium=[];
+    let currentPlan="safe";
+    function updateMultiHistPremium(){ document.getElementById("multiplierHistoryPremium").innerHTML=multiplierHistoryPremium.map(m=>`<span class="premium-bubble">${m.toFixed(2)}x</span>`).join(''); }
+    function addBetHistPremium(amt,mult,won){ userBetHistoryPremium.unshift({amt,mult,won}); if(userBetHistoryPremium.length>8) userBetHistoryPremium.pop(); document.getElementById("userBetHistoryPremium").innerHTML=userBetHistoryPremium.map(b=>`<div style="padding:5px; border-bottom:1px solid #333;">💰 ${b.amt} ৳ → ${b.mult.toFixed(2)}x : ${b.won?'✅ +'+(b.amt*b.mult).toFixed(2):'❌ -'+b.amt}</div>`).join(''); }
+    function addMultHistPremium(m){ multiplierHistoryPremium.unshift(m); if(multiplierHistoryPremium.length>12) multiplierHistoryPremium.pop(); updateMultiHistPremium(); }
+    function getCrashPointByPlan(plan){ let r=Math.random();
+
+if(r<0.70){ if(plan==="safe") return 1.05+Math.random()*0.45; if(plan==="medium") return 1.10+Math.random()*0.60; return 1.15+Math.random()*0.85; } else { if(plan==="safe") return 1.8+Math.random()*1.2; if(plan==="medium") return 2.5+Math.random()*3.5; return 3.5+Math.random()*12; } }
+    function updatePlanInfo(plan){ if(plan==="safe") document.getElementById("planInfoText").innerHTML="🛡️ SAFE PLAN: Target 1.2x-2.5x | Low risk"; else if(plan==="medium") document.getElementById("planInfoText").innerHTML="⚡ MEDIUM PLAN: Target 1.5x-5x | Balanced"; else document.getElementById("planInfoText").innerHTML="🔥 AGGRESSIVE PLAN: Target 2x-15x+ | High risk"; }
+    document.querySelectorAll(".plan-btn").forEach(btn=>{ btn.onclick=()=>{ document.querySelectorAll(".plan-btn").forEach(b=>b.classList.remove("selected")); btn.classList.add("selected"); currentPlan=btn.getAttribute("data-plan"); updatePlanInfo(currentPlan); }; });
+    document.querySelector(".plan-btn.safe").classList.add("selected");
+    function stopCrashPremium(manual=false){ if(crashIntervalPremium) clearInterval(crashIntervalPremium); if(crashActivePremium && crashBetAmtPremium>0 && currentUser && currentUser!==ADMIN_USERNAME){ if(manual){ let win=crashBetAmtPremium*crashMultPremium; addWinWithLeaderboard(win); addBetHistPremium(crashBetAmtPremium,crashMultPremium,true); document.getElementById("crashResultPremium").innerHTML=`✅ Won ${win.toFixed(2)} ৳`; } else { addBetHistPremium(crashBetAmtPremium,crashMultPremium,false); document.getElementById("crashResultPremium").innerHTML=`💥 Lost ${crashBetAmtPremium} ৳`; } } document.getElementById("startCrashPremium").disabled=false; document.getElementById("cashoutBtnPremium").disabled=true; crashActivePremium=false; crashBetAmtPremium=0; document.getElementById("crashMultPremium").innerText="1.00x"; }
+    function startCrashPremium(){ if(crashActivePremium||!currentUser||currentUser===ADMIN_USERNAME){ document.getElementById("crashResultPremium").innerHTML="❗ Login as regular user"; return; } let bet=parseFloat(document.getElementById("crashBetPremium").value); if(isNaN(bet)||bet<10) bet=100; if(bet>userBalance){ document.getElementById("crashResultPremium").innerHTML="Insufficient balance"; return; } subBalance(bet); crashBetAmtPremium=bet; crashActivePremium=true; crashMultPremium=1.00; document.getElementById("startCrashPremium").disabled=true; document.getElementById("cashoutBtnPremium").disabled=false; let crashPoint=getCrashPointByPlan(currentPlan); let autoTarget=parseFloat(document.getElementById("autoCashoutPremium").value); crashIntervalPremium=setInterval(()=>{ if(!crashActivePremium) return; let inc=crashMultPremium<2?0.025:(crashMultPremium<5?0.04:(crashMultPremium<10?0.07:0.12)); crashMultPremium+=inc; crashMultPremium=parseFloat(crashMultPremium.toFixed(3)); document.getElementById("crashMultPremium").innerText=crashMultPremium.toFixed(2)+"x"; if(autoTarget&&crashMultPremium>=autoTarget){ addMultHistPremium(crashMultPremium); stopCrashPremium(true); } else if(crashMultPremium>=crashPoint){ addMultHistPremium(crashMultPremium); stopCrashPremium(false); } },120); }
+    document.getElementById("startCrashPremium")?.addEventListener("click", startCrashPremium);
+    document.getElementById("cashoutBtnPremium")?.addEventListener("click",()=>{ if(crashActivePremium) stopCrashPremium(true); });
+    
+    // WinGo and Slot (simplified)
+    let wingoTimerPremium=30, wingoIntervalPremium=null, wingoActivePremium=true, wingoHistoryPremium=[], wingoPendingPremium=null;
+    let wingoSelectedColorPremium=null, wingoSelectedNumberPremium=null, wingoSelectedMultPremium=1, wingoSelectedBSPremium=null;
+    function getWingoColor(num){ if(num===0||num===5) return "violet"; if([1,3,7,9].includes(num)) return "red"; return "green"; }
+    function buildPremiumWheel(){ let w=document.getElementById("wingoWheelPremium"); if(w){ w.innerHTML=""; for(let i=0;i<=9;i++){ let tile=document.createElement("div"); tile.className="premium-number"; tile.innerText=i; let col=getWingoColor(i); tile.style.borderBottom=`4px solid
+
+${col==='green'?'#28a745':(col==='violet'?'#8b5cf6':'#ef4444')}`; w.appendChild(tile); } } }
+    function buildPremiumNumberBtns(){ let c=document.getElementById("wingoNumberPremium"); if(c){ c.innerHTML=""; for(let i=0;i<=9;i++){ let btn=document.createElement("div"); btn.className="premium-number"; btn.innerText=i; btn.style.cursor="pointer"; btn.onclick=()=>{ document.querySelectorAll("#wingoNumberPremium .premium-number").forEach(b=>b.classList.remove("selected")); btn.classList.add("selected"); wingoSelectedNumberPremium=i; wingoSelectedColorPremium=null; wingoSelectedBSPremium=null; document.querySelectorAll(".premium-color-btn").forEach(b=>b.classList.remove("selected")); document.querySelectorAll(".premium-bs-btn").forEach(b=>b.classList.remove("selected")); }; c.appendChild(btn); } } }
+    function startWingoRoundPremium(){ if(wingoIntervalPremium) clearInterval(wingoIntervalPremium); wingoActivePremium=true; wingoTimerPremium=30; document.getElementById("wingoTimerPremium").innerText="0:30"; wingoIntervalPremium=setInterval(()=>{ if(wingoTimerPremium<=0){ clearInterval(wingoIntervalPremium); endWingoRoundPremium(); } else{ wingoTimerPremium--; let m=Math.floor(wingoTimerPremium/60),s=wingoTimerPremium%60; document.getElementById("wingoTimerPremium").innerText=`${m}:${s.toString().padStart(2,'0')}`; } },1000); }
+    function endWingoRoundPremium(){ if(!wingoActivePremium) return; wingoActivePremium=false; let winNum=Math.floor(Math.random()*10), winColor=getWingoColor(winNum); let tiles=document.querySelectorAll("#wingoWheelPremium .premium-number"); tiles.forEach((t,i)=>{ t.classList.remove("winning"); if(i===winNum) t.classList.add("winning"); }); if(wingoPendingPremium && currentUser && currentUser!==ADMIN_USERNAME){ let winAmt=0,won=false; if(wingoPendingPremium.color && wingoPendingPremium.color===winColor){ let mult=wingoPendingPremium.color==='violet'?4.5:2; winAmt=wingoPendingPremium.amount*mult*wingoPendingPremium.mult; won=true; } else if(wingoPendingPremium.number!==null && wingoPendingPremium.number===winNum){ winAmt=wingoPendingPremium.amount*9*wingoPendingPremium.mult; won=true; } else if(wingoPendingPremium.bigSmall && ((wingoPendingPremium.bigSmall==="big"&&winNum>=5)||(wingoPendingPremium.bigSmall==="small"&&winNum<=4))){ winAmt=wingoPendingPremium.amount*2*wingoPendingPremium.mult; won=true; } if(won && winAmt>0){ addWinWithLeaderboard(winAmt); document.getElementById("wingoResultPremium").innerHTML=`🎉 WIN! +${winAmt.toFixed(2)} ৳`; } else { document.getElementById("wingoResultPremium").innerHTML=`😞 LOST! Number ${winNum}`; } } else { document.getElementById("wingoResultPremium").innerHTML=`🎲 Result: ${winNum}`; } wingoHistoryPremium.unshift({num:winNum,color:winColor}); if(wingoHistoryPremium.length>8) wingoHistoryPremium.pop(); document.getElementById("wingoHistoryPremium").innerHTML=wingoHistoryPremium.map(h=>`<span class="history-chip">${h.num} (${h.color})</span>`).join(''); wingoPendingPremium=null; wingoSelectedColorPremium=null; wingoSelectedNumberPremium=null; wingoSelectedBSPremium=null; document.querySelectorAll(".premium-color-btn").forEach(c=>c.classList.remove("selected")); document.querySelectorAll("#wingoNumberPremium .premium-number").forEach(b=>b.classList.remove("selected")); document.querySelectorAll(".premium-bs-btn").forEach(b=>b.classList.remove("selected")); setTimeout(startWingoRoundPremium,3000); }
+    document.getElementById("wingoPlacePremium")?.addEventListener("click",()=>{ if(!wingoActivePremium||!currentUser||currentUser===ADMIN_USERNAME){ document.getElementById("wingoResultPremium").innerHTML="Login as regular user"; return; } let amt=parseFloat(document.getElementById("wingoBetPremium").value); if(isNaN(amt)||amt<10||amt>userBalance){ document.getElementById("wingoResultPremium").innerHTML="Invalid bet"; return; } if(!wingoSelectedColorPremium && wingoSelectedNumberPremium===null && !wingoSelectedBSPremium){ document.getElementById("wingoResultPremium").innerHTML="Select bet type"; return; } subBalance(amt);
+
+wingoPendingPremium={amount:amt,color:wingoSelectedColorPremium,number:wingoSelectedNumberPremium,mult:wingoSelectedMultPremium,bigSmall:wingoSelectedBSPremium}; document.getElementById("wingoResultPremium").innerHTML=`✅ Bet ${amt} ৳ placed!`; });
+    document.querySelectorAll(".premium-color-btn").forEach(c=>{ c.onclick=()=>{ document.querySelectorAll(".premium-color-btn").forEach(c2=>c2.classList.remove("selected")); c.classList.add("selected"); wingoSelectedColorPremium=c.getAttribute("data-wing-color"); wingoSelectedNumberPremium=null; wingoSelectedBSPremium=null; document.querySelectorAll("#wingoNumberPremium .premium-number").forEach(b=>b.classList.remove("selected")); document.querySelectorAll(".premium-bs-btn").forEach(b=>b.classList.remove("selected")); }; });
+    document.querySelectorAll(".premium-mult-btn").forEach(m=>{ m.onclick=()=>{ document.querySelectorAll(".premium-mult-btn").forEach(m2=>m2.classList.remove("selected")); m.classList.add("selected"); wingoSelectedMultPremium=parseInt(m.getAttribute("data-mult")); }; });
+    document.querySelectorAll(".premium-bs-btn").forEach(b=>{ b.onclick=()=>{ document.querySelectorAll(".premium-bs-btn").forEach(b2=>b2.classList.remove("selected")); b.classList.add("selected"); wingoSelectedBSPremium=b.getAttribute("data-bs"); wingoSelectedColorPremium=null; wingoSelectedNumberPremium=null; document.querySelectorAll(".premium-color-btn").forEach(c=>c.classList.remove("selected")); document.querySelectorAll("#wingoNumberPremium .premium-number").forEach(n=>n.classList.remove("selected")); }; });
+    
+    const slotSym=["🍒","🍋","🍊","💎","7️⃣","⭐"], slotPayouts={"🍒🍒🍒":30,"🍋🍋🍋":40,"🍊🍊🍊":35,"💎💎💎":150,"7️⃣7️⃣7️⃣":300,"⭐⭐⭐":80};
+    document.getElementById("spinBtn")?.addEventListener("click",()=>{ if(!currentUser||currentUser===ADMIN_USERNAME){ document.getElementById("slotResult").innerHTML="Login as regular user"; return; } let bet=parseFloat(document.getElementById("slotBet").value); if(isNaN(bet)||bet<10) bet=50; if(bet>userBalance){ document.getElementById("slotResult").innerHTML="Insufficient"; return; } subBalance(bet); let r1=slotSym[Math.floor(Math.random()*6)],r2=slotSym[Math.floor(Math.random()*6)],r3=slotSym[Math.floor(Math.random()*6)]; let reels=document.querySelectorAll(".reel"); reels[0].innerText=r1; reels[1].innerText=r2; reels[2].innerText=r3; let combo=r1+r2+r3; let win=slotPayouts[combo]?slotPayouts[combo]*(bet/50):0; if(win>0){ addWinWithLeaderboard(win); document.getElementById("slotResult").innerHTML=`🎉 WIN ${win.toFixed(2)} ৳`; } else { document.getElementById("slotResult").innerHTML=`😞 Lost ${bet} ৳`; } });
+    
+    function resetAllGames(){ if(crashIntervalPremium) clearInterval(crashIntervalPremium); crashActivePremium=false; document.getElementById("startCrashPremium").disabled=false; document.getElementById("cashoutBtnPremium").disabled=true; document.getElementById("crashMultPremium").innerText="1.00x"; if(wingoIntervalPremium) clearInterval(wingoIntervalPremium); startWingoRoundPremium(); }
+    
+    buildPremiumWheel(); buildPremiumNumberBtns(); startWingoRoundPremium();
+    if(getSession()) hideAuth(); else showAuth();
+</script>
+</body>
+</html>ST STEVENX:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>ROYAL CASINO | Deposit & Withdraw with Approval</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: linear-gradient(145deg, #0a2f1f 0%, #05180e 100%);
+            color: #f5e7d9;
+            padding: 20px;
+        }
+
+        .dashboard {
+            max-width: 1500px;
+            margin: 0 auto;
+        }
+
+        .top-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            background: #0f0e17cc;
+            backdrop-filter: blur(10px);
+            border-radius: 60px;
+            padding: 12px 30px;
+            margin-bottom: 30px;
+            border: 1px solid gold;
+        }
+
+        .logo h1 {
+            margin: 0;
+            background: linear-gradient(135deg, #F9E076, #FFB347);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .balance-area {
+            background: #000000aa;
+            padding: 6px 20px;
+            border-radius: 40px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .balance-area span {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #FFD966;
+        }
+
+        .admin-link {
+            background: #ffb34733;
+            border-radius: 40px;
+            padding: 6px 15px;
+            text-decoration: none;
+            color: #FFD966;
+            font-weight: bold;
+            border: 1px solid gold;
+        }
+        .admin-link:hover {
+            background: #ffb347;
+            color: black;
+        }
+
+        .bank-section {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+            justify-content: center;
+        }
+
+        .bank-card {
+            background: #20211cd4;
+            border-radius: 2rem;
+            padding: 14px 20px;
+            flex: 1;
+            min-width: 280px;
+            backdrop-filter: blur(5px);
+            border: 1px solid #ffd96677;
+            text-align: center;
+        }
+
+        .bkash-highlight {
+            background: #e2136e20;
+            border-left: 5px solid #e2136e;
+        }
+
+        .bank-card input, .bank-card textarea {
+            background: #2b2a24;
+            border: 1px solid #f3b33d;
+            padding: 8px 12px;
+            border-radius: 50px;
+            width: 90%;
+            margin: 5px 0;
+            color: white;
+            text-align: center;
+        }
+
+        .bank-card button {
+            background: #f3b33d;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        .games-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .game-card {
+            background: linear-gradient(145deg, #1f2a1b, #0f1a0c);
+            border-radius: 2rem;
+            width: 340px;
+            padding: 18px;
+            border: 1px solid #c2a144;
+            box-shadow: 0 8px 18px black;
+        }
+
+        .game-card h2 {
+            margin: 0 0 12px 0;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .game-area {
+            background: #00000066;
+            border-radius: 1.5rem;
+            padding: 12px;
+            margin-top: 8px;
+        }
+
+        .slot-reels {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            font-size: 2.5rem;
+        }
+
+        .reel {
+            background: #2d2418;
+            width: 70px;
+            padding: 10px;
+
+border-radius: 20px;
+            text-align: center;
+        }
+
+        .roulette-wheel {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            max-height: 150px;
+            overflow-y: auto;
+            justify-content: center;
+        }
+
+        .roulette-number {
+            background: #2c2a1c;
+            width: 40px;
+            padding: 5px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
+        .bet-input {
+            width: 85px;
+            background: #2b2a24;
+            border: 1px solid gold;
+            padding: 6px;
+            border-radius: 30px;
+            color: white;
+            text-align: center;
+        }
+
+        .game-action {
+            background: #f0bc5e;
+            border: none;
+            font-weight: bold;
+            padding: 6px 14px;
+            margin: 5px;
+            border-radius: 28px;
+            cursor: pointer;
+        }
+
+        .result-area {
+            background: #00000070;
+            border-radius: 20px;
+            padding: 8px;
+            margin-top: 8px;
+            font-size: 0.8rem;
+        }
+
+        .dice-area {
+            font-size: 2.5rem;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.7rem;
+            margin-top: 20px;
+            opacity: 0.7;
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+    </style>
+</head>
+<body>
+<div class="dashboard">
+    <div class="top-header">
+        <div class="logo">
+            <h1>👑 ROYAL CASINO • ALL GAMES</h1>
+        </div>
+        <div class="balance-area">
+            💰 Balance: $<span id="userBalance">1000.00</span>
+            <a href="admin-panel.html" target="_blank" class="admin-link">🔐 ADMIN PANEL</a>
+        </div>
+    </div>
+
+    <!-- DEPOSIT & WITHDRAW SECTION (Withdraw with user Bkash number + pending) -->
+    <div class="bank-section">
+        <div class="bank-card bkash-highlight">
+            <h3>📱 Bkash Deposit</h3>
+            <p>Send to: <strong style="color:#ff7b9c;">01860909272</strong></p>
+            <input type="number" id="depositAmount" placeholder="Amount $ (min $5)" value="10" min="5">
+            <textarea id="transactionId" rows="1" placeholder="Transaction ID (required)" style="border-radius: 20px; height: 40px;"></textarea>
+            <button id="submitDepositBtn">📤 Submit Deposit Request</button>
+            <div id="depositMsg" style="font-size:12px; margin-top:6px;"></div>
+            <div style="font-size:11px; color:#ffcc88;">⬇️ Admin approves after verification</div>
+        </div>
+        
+        <div class="bank-card">
+            <h3>🏧 Withdraw Funds (Pending Approval)</h3>
+            <input type="number" id="withdrawAmount" placeholder="Amount $" value="20" min="10">
+            <input type="text" id="withdrawBkashNumber" placeholder="Your Bkash Number (required)" value="01860909272">
+            <button id="withdrawBtn">📤 Request Withdrawal</button>
+            <div id="withdrawMsg" style="font-size:12px; margin-top:6px;"></div>
+            <small>Withdrawals go to pending state. Admin will approve & send money.</small>
+        </div>
+    </div>
+
+    <!-- ALL CASINO GAMES (6 Games Fully Working) -->
+    <div class="games-grid">
+        <!-- SLOT MACHINE -->
+        <div class="game-card">
+            <h2>🎰 SLOT EMPIRE</h2>
+            <div class="game-area">
+                <div class="slot-reels">
+                    <div class="reel">🍒</div>
+                    <div class="reel">🍒</div>
+                    <div class="reel">🍒</div>
+                </div>
+                <div>Bet $<input id="slotBet" class="bet-input" value="5" min="1"></div>
+                <button class="game-action" id="spinBtn">🌀 SPIN</button>
+                <div id="slotResult" class="result-area">✨ Ready to spin ✨</div>
+            </div>
+        </div>
+
+        <!-- ROULETTE -->
+        <div class="game-card">
+            <h2>🎡 EUROPEAN ROULETTE</h2>
+
+<div class="game-area">
+                <div class="roulette-wheel" id="rouletteWheel"></div>
+                <div>Pick #<input id="rouletteNum" value="7" style="width:60px"> Bet $<input id="rouletteBet" class="bet-input" value="5"></div>
+                <button class="game-action" id="rouletteSpinBtn">🎲 SPIN</button>
+                <div id="rouletteResult" class="result-area">Place your bet</div>
+            </div>
+        </div>
+
+        <!-- BLACKJACK -->
+        <div class="game-card">
+            <h2>🃏 BLACKJACK 21</h2>
+            <div class="game-area">
+                <div>Dealer: <span id="dealerHand">??</span> (<span id="dealerScore">?</span>)</div>
+                <div>You: <span id="playerHand">-</span> (<span id="playerScore">0</span>)</div>
+                <div>Bet $<input id="bjBet" class="bet-input" value="10"></div>
+                <button class="game-action" id="dealBtn">DEAL</button>
+                <button class="game-action" id="hitBtn">HIT</button>
+                <button class="game-action" id="standBtn">STAND</button>
+                <div id="bjResult" class="result-area">Press DEAL to start</div>
+            </div>
+        </div>
+
+        <!-- DICE GAME -->
+        <div class="game-card">
+            <h2>🎲 DICE (Over/Under)</h2>
+            <div class="game-area">
+                <div class="dice-area"><span id="diceValue">⚀</span></div>
+                <select id="dicePred">
+                    <option value="over">Over 3.5 (4-6)</option>
+                    <option value="under">Under 3.5 (1-3)</option>
+                </select>
+                Bet $<input id="diceBet" class="bet-input" value="5">
+                <button class="game-action" id="rollDiceBtn">ROLL</button>
+                <div id="diceResult" class="result-area"></div>
+            </div>
+        </div>
+
+        <!-- CRASH GAME -->
+        <div class="game-card">
+            <h2>🚀 CRASH MULTIPLIER</h2>
+            <div class="game-area">
+                <div style="font-size: 2rem; font-weight: bold;" id="crashMult">1.00x</div>
+                <div>Bet $<input id="crashBet" class="bet-input" value="5"></div>
+                <button class="game-action" id="startCrash">START</button>
+                <button class="game-action" id="cashoutBtn" disabled>CASHOUT</button>
+                <div id="crashResult" class="result-area">Click START</div>
+            </div>
+        </div>
+
+        <!-- BACCARAT -->
+        <div class="game-card">
+            <h2>🎴 BACCARAT</h2>
+            <div class="game-area">
+                <div>Player: <span id="bPcards">—</span> (<span id="bPscore">0</span>)</div>
+                <div>Banker: <span id="bBcards">—</span> (<span id="bBscore">0</span>)</div>
+                <select id="baccBetType">
+                    <option value="player">Player (2x)</option>
+                    <option value="banker">Banker (1.95x)</option>
+                    <option value="tie">Tie (8x)</option>
+                </select>
+                Bet $<input id="baccBetAmt" class="bet-input" value="10">
+                <button class="game-action" id="dealBacc">DEAL</button>
+                <div id="baccResult" class="result-area"></div>
+            </div>
+        </div>
+    </div>
+    <footer>🔐 Deposit & Withdrawal requests require admin approval. Open ADMIN PANEL (new tab) to manage. Bkash: 01860909272</footer>
+</div>
+
+<script>
+    // ======================= USER BALANCE ==========================
+    let userBalance = 1000.00;
+    const BkashNumber = "01860909272";
+    
+    // Load pending deposit requests from localStorage (shared with admin)
+    function loadDepositRequests() {
+        let stored = localStorage.getItem("depositRequests");
+        if(stored) return JSON.parse(stored);
+        return [];
+    }
+    
+    function saveDepositRequests(requests) {
+        localStorage.setItem("depositRequests", JSON.stringify(requests));
+    }
+    
+    // Load withdrawal requests
+    function loadWithdrawRequests() {
+        let stored = localStorage.getItem("withdrawRequests");
+        if(stored) return
+
+JSON.parse(stored);
+        return [];
+    }
+    
+    function saveWithdrawRequests(requests) {
+        localStorage.setItem("withdrawRequests", JSON.stringify(requests));
+    }
+    
+    // Check for approved deposits
+    function checkForApprovedDeposits() {
+        let requests = loadDepositRequests();
+        let approvedFound = false;
+        let newRequests = [];
+        for(let req of requests) {
+            if(req.status === "approved" && !req.processed) {
+                addBalance(req.amount);
+                req.processed = true;
+                approvedFound = true;
+                showDepositMsg(`✅ Deposit of $${req.amount} approved!`, "green");
+            }
+            newRequests.push(req);
+        }
+        if(approvedFound) {
+            saveDepositRequests(newRequests);
+        }
+    }
+    
+    // Check for approved withdrawals (admin approves, money already deducted, now mark as completed)
+    function checkForApprovedWithdrawals() {
+        let requests = loadWithdrawRequests();
+        let updated = false;
+        for(let req of requests) {
+            if(req.status === "approved" && !req.completed) {
+                req.completed = true;
+                updated = true;
+                showWithdrawMsg(`✅ Withdrawal of $${req.amount} to ${req.userNumber} has been APPROVED by admin!`, "green");
+            }
+            if(req.status === "rejected" && !req.notified) {
+                req.notified = true;
+                updated = true;
+                // Refund balance if rejected (since we deducted when request was made)
+                if(req.deducted) {
+                    addBalance(req.amount);
+                    showWithdrawMsg(`⚠️ Withdrawal request rejected. $${req.amount} refunded to balance.`, "orange");
+                }
+            }
+        }
+        if(updated) {
+            saveWithdrawRequests(requests);
+        }
+    }
+    
+    function updateBalanceUI() { document.getElementById("userBalance").innerText = userBalance.toFixed(2); }
+    function addBalance(amt) { if(amt>0) { userBalance += amt; updateBalanceUI(); return true; } return false; }
+    function subBalance(amt) { if(amt>0 && userBalance>=amt) { userBalance -= amt; updateBalanceUI(); return true; } return false; }
+    
+    function showDepositMsg(msg, color) {
+        const msgDiv = document.getElementById("depositMsg");
+        msgDiv.innerHTML = <span style="color:${color};">${msg}</span>;
+        setTimeout(() => { if(msgDiv) msgDiv.innerHTML = ""; }, 4000);
+    }
+    
+    function showWithdrawMsg(msg, color) {
+        const msgDiv = document.getElementById("withdrawMsg");
+        msgDiv.innerHTML = <span style="color:${color};">${msg}</span>;
+        setTimeout(() => { if(msgDiv) msgDiv.innerHTML = ""; }, 4000);
+    }
+    
+    // SUBMIT DEPOSIT REQUEST
+    document.getElementById("submitDepositBtn").addEventListener("click", () => {
+        let amount = parseFloat(document.getElementById("depositAmount").value);
+        let txnId = document.getElementById("transactionId").value.trim();
+        if(isNaN(amount) || amount < 5) {
+            showDepositMsg("❌ Minimum deposit is $5!", "red");
+            return;
+        }
+        if(txnId === "") {
+            showDepositMsg("❌ Please enter a valid Bkash Transaction ID", "red");
+            return;
+        }
+        if(txnId.length < 3) {
+            showDepositMsg("❌ Invalid Transaction ID", "red");
+            return;
+        }
+        
+        let requests = loadDepositRequests();
+        const newId = Date.now() + Math.floor(Math.random() * 10000);
+        requests.push({
+            id: newId,
+            amount: amount,
+            transactionId: txnId,
+            status: "pending",
+            processed: false,
+            timestamp: new Date().toLocaleString()
+        });
+        saveDepositRequests(requests);
+        showDepositMsg(`📤 Deposit request submitted! $${amount} - Waiting for admin approval.`, "orange");
+        document.getElementById("transactionId").value = "";
+        document.getElementById("depositAmount").value = "10";
+    });
+    
+    //
+
+WITHDRAW REQUEST (with user Bkash number, goes to pending, deducts balance immediately)
+    document.getElementById("withdrawBtn").addEventListener("click", () => {
+        let amount = parseFloat(document.getElementById("withdrawAmount").value);
+        let userNumber = document.getElementById("withdrawBkashNumber").value.trim();
+        let msgDiv = document.getElementById("withdrawMsg");
+        
+        if(isNaN(amount) || amount <= 0) {
+            showWithdrawMsg("❌ Invalid amount", "red");
+            return;
+        }
+        if(amount < 10) {
+            showWithdrawMsg("⚠️ Minimum withdraw $10", "red");
+            return;
+        }
+        if(userNumber === "") {
+            showWithdrawMsg("❌ Please enter your Bkash number", "red");
+            return;
+        }
+        if(!/^01[3-9]\d{8}$/.test(userNumber) && userNumber !== "01860909272") {
+            // Basic BD phone validation, but not too strict
+            if(userNumber.length < 11) {
+                showWithdrawMsg("❌ Please enter a valid Bkash number (11 digits)", "red");
+                return;
+            }
+        }
+        if(amount > userBalance) {
+            showWithdrawMsg("⚠️ Insufficient balance!", "red");
+            return;
+        }
+        
+        // Deduct balance immediately (pending approval)
+        subBalance(amount);
+        
+        // Create withdrawal request
+        let requests = loadWithdrawRequests();
+        const newId = Date.now() + Math.floor(Math.random() * 10000);
+        requests.push({
+            id: newId,
+            amount: amount,
+            userNumber: userNumber,
+            status: "pending",
+            deducted: true,
+            completed: false,
+            notified: false,
+            timestamp: new Date().toLocaleString()
+        });
+        saveWithdrawRequests(requests);
+        
+        showWithdrawMsg(`📤 Withdrawal request of $${amount.toFixed(2)} submitted to ${userNumber}. Waiting for admin approval.`, "orange");
+        document.getElementById("withdrawAmount").value = "20";
+        document.getElementById("withdrawBkashNumber").value = "";
+    });
+    
+    // ======================= ALL GAME LOGICS =======================
+    
+    // 1. SLOT MACHINE
+    const slotSym = ["🍒","🍋","🍊","💎","7️⃣","⭐"];
+    const slotPayouts = {"🍒🍒🍒":30,"🍋🍋🍋":40,"🍊🍊🍊":35,"💎💎💎":150,"7️⃣7️⃣7️⃣":300,"⭐⭐⭐":80};
+    document.getElementById("spinBtn").onclick = () => {
+        let bet = parseFloat(document.getElementById("slotBet").value);
+        if(isNaN(bet)||bet<=0) bet=5;
+        if(!subBalance(bet)) { document.getElementById("slotResult").innerHTML = "❌ No balance!"; return; }
+        let r1=slotSym[Math.floor(Math.random()*6)], r2=slotSym[Math.floor(Math.random()*6)], r3=slotSym[Math.floor(Math.random()*6)];
+        let reels = document.querySelectorAll(".reel");
+        reels[0].innerText=r1; reels[1].innerText=r2; reels[2].innerText=r3;
+        let combo=r1+r2+r3;
+        let win = slotPayouts[combo] ? slotPayouts[combo] * (bet/5) : 0;
+        if(win>0) { addBalance(win); document.getElementById("slotResult").innerHTML = 🎉 WIN $${win.toFixed(2)}! (${combo}); }
+        else { document.getElementById("slotResult").innerHTML = 😞 Lost $${bet}. combo ${combo}; }
+    };
+    
+    // 2. ROULETTE
+    function buildRoulette() { let w=document.getElementById("rouletteWheel"); w.innerHTML=""; for(let i=0;i<=36;i++){let d=document.createElement("div"); d.className="roulette-number"; d.innerText=i; d.style.background=(i===0?"#2e7d32":i%2===0?"#332211":"#8b3c3c"); d.onclick=()=>document.getElementById("rouletteNum").value=i; w.appendChild(d);} }
+    buildRoulette();
+    document.getElementById("rouletteSpinBtn").onclick = () => {
+        let bet = parseFloat(document.getElementById("rouletteBet").value);
+        let num = parseInt(document.getElementById("rouletteNum").value);
+        if(isNaN(bet)||bet<=0) bet=5; if(isNaN(num)||num<0||num>36) num=7;
+        if(!subBalance(bet)){ document.getElementById("rouletteResult").innerHTML = "Low balance"; return; }
+        let spin =
+
+Math.floor(Math.random()*37);
+        if(spin===num){ let win=bet*35; addBalance(win); document.getElementById("rouletteResult").innerHTML = 🎉 Hit ${spin}! Won $${win.toFixed(2)}; }
+        else { document.getElementById("rouletteResult").innerHTML = 😔 Ball ${spin}, lost $${bet}; }
+    };
+    
+    // 3. BLACKJACK
+    let deck=[], pCards=[], dCards=[], bjActive=false, currentBjBet=0;
+    function buildDeck(){ let d=[]; for(let s of ['♠','♥','♣','♦']) for(let v of ['2','3','4','5','6','7','8','9','10','J','Q','K','A']) d.push({val:v,suit:s}); for(let i=d.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[d[i],d[j]]=[d[j],d[i]];} return d;}
+    function cardVal(c){if(c.val==='A') return 11; if(['K','Q','J'].includes(c.val)) return 10; return parseInt(c.val);}
+    function handScore(hand){ let s=0, a=0; for(let c of hand){let v=cardVal(c); if(v===11)a++; s+=v;} while(s>21 && a>0){s-=10; a--;} return s;}
+    function updateBJUI(){ let ps=handScore(pCards), ds=handScore(dCards); document.getElementById("playerHand").innerHTML=pCards.map(c=>c.val+c.suit).join(' ')||"—"; document.getElementById("playerScore").innerHTML=ps; if(bjActive) document.getElementById("dealerHand").innerHTML=dCards.length?`${dCards[0].val}${dCards[0].suit} + ?`:"??", document.getElementById("dealerScore").innerHTML="?"; else document.getElementById("dealerHand").innerHTML=dCards.map(c=>c.val+c.suit).join(' ')||"—", document.getElementById("dealerScore").innerHTML=ds; }
+    function endBJ(){ bjActive=false; let pScore=handScore(pCards), dScore=handScore(dCards), payout=0; if(pScore>21) document.getElementById("bjResult").innerHTML=`Bust! Lose $${currentBjBet}`; else if(dScore>21) payout=currentBjBet*2, addBalance(payout), document.getElementById("bjResult").innerHTML=`Dealer bust! Win $${payout}`; else if(pScore>dScore) payout=currentBjBet*2, addBalance(payout), document.getElementById("bjResult").innerHTML=`You win $${payout}`; else if(pScore===dScore) payout=currentBjBet, addBalance(payout), document.getElementById("bjResult").innerHTML=`Push, $${currentBjBet} returned`; else document.getElementById("bjResult").innerHTML=`Dealer wins, lose $${currentBjBet}`; updateBJUI(); enableBJButtons(true); }
+    function dealerPlay(){ while(handScore(dCards)<17) dCards.push(deck.pop()); endBJ(); }
+    function startBJ(bet){ if(!subBalance(bet)){ document.getElementById("bjResult").innerHTML="No balance!"; return false; } currentBjBet=bet; deck=buildDeck(); pCards=[deck.pop(),deck.pop()]; dCards=[deck.pop(),deck.pop()]; bjActive=true; enableBJButtons(false); updateBJUI(); if(handScore(pCards)===21){ addBalance(currentBjBet*2.5); document.getElementById("bjResult").innerHTML=`🔥 BLACKJACK! +$${(currentBjBet*2.5).toFixed(2)}`; bjActive=false; enableBJButtons(true); updateBJUI(); return false;} return true; }
+    function enableBJButtons(enableDeal){ document.getElementById("dealBtn").disabled=!enableDeal; document.getElementById("hitBtn").disabled=enableDeal; document.getElementById("standBtn").disabled=enableDeal; }
+    document.getElementById("dealBtn").onclick=()=>{ let b=parseFloat(document.getElementById("bjBet").value); if(isNaN(b)||b<=0)b=10; if(userBalance<b) alert("Low balance"); else startBJ(b); };
+    document.getElementById("hitBtn").onclick=()=>{ if(!bjActive)return; pCards.push(deck.pop()); updateBJUI(); if(handScore(pCards)>21) endBJ(); };
+    document.getElementById("standBtn").onclick=()=>{ if(!bjActive)return; dealerPlay(); };
+    enableBJButtons(true);
+    
+    // 4. DICE
+    document.getElementById("rollDiceBtn").onclick=()=>{
+        let bet=parseFloat(document.getElementById("diceBet").value); if(isNaN(bet)||bet<=0)bet=5; let pred=document.getElementById("dicePred").value;
+        if(!subBalance(bet)){ document.getElementById("diceResult").innerHTML="Balance low!"; return; }
+        let dice=Math.floor(Math.random()*6)+1; let sym=["⚀","⚁","⚂","⚃","⚄","⚅"][dice-1]; document.getElementById("diceValue").innerHTML=sym;
+        let winCond=(pred==="over" && dice>=4) || (pred==="under" && dice<=3);
+        if(winCond){ let winAmt=bet*1.9;
+
+addBalance(winAmt); document.getElementById("diceResult").innerHTML=`🎲 ${dice} You win $${winAmt.toFixed(2)}!`; }
+        else { document.getElementById("diceResult").innerHTML=`😞 ${dice} You lose $${bet.toFixed(2)}`; }
+    };
+    
+    // 5. CRASH GAME
+    let crashInterval=null, crashActive=false, crashBetAmount=0, crashMult=1.00;
+    function stopCrash(manual=false){ if(crashInterval){clearInterval(crashInterval); crashInterval=null;} if(crashActive){ crashActive=false; if(manual && crashBetAmount>0){ let win=crashBetAmount*crashMult; addBalance(win); document.getElementById("crashResult").innerHTML=`✅ CASHED at ${crashMult.toFixed(2)}x! Won $${win.toFixed(2)}`; } else { document.getElementById("crashResult").innerHTML=`💥 CRASH at ${crashMult.toFixed(2)}x! Lost $${crashBetAmount.toFixed(2)}`; } document.getElementById("startCrash").disabled=false; document.getElementById("cashoutBtn").disabled=true; document.getElementById("crashMult").innerText="1.00x"; crashBetAmount=0; } }
+    document.getElementById("startCrash").onclick=()=>{ if(crashActive)return; let bet=parseFloat(document.getElementById("crashBet").value); if(isNaN(bet)||bet<=0)bet=5; if(!subBalance(bet)){document.getElementById("crashResult").innerHTML="No balance"; return;} crashBetAmount=bet; crashActive=true; crashMult=1.00; document.getElementById("crashMult").innerText="1.00x"; document.getElementById("startCrash").disabled=true; document.getElementById("cashoutBtn").disabled=false; let crashPoint = 1 + Math.random() * 8; crashInterval=setInterval(()=>{ if(!crashActive){if(crashInterval)clearInterval(crashInterval); return;} crashMult+=0.05; if(crashMult>=crashPoint){ stopCrash(false); } else { document.getElementById("crashMult").innerText=crashMult.toFixed(2)+"x"; } }, 95); };
+    document.getElementById("cashoutBtn").onclick=()=>{ if(crashActive) stopCrash(true); };
+    
+    // 6. BACCARAT
+    function drawCard(){ let vals=['2','3','4','5','6','7','8','9','10','J','Q','K','A']; return {val:vals[Math.floor(Math.random()*13)], suit:'♠'}; }
+    function baccScore(hand){ let t=0; for(let c of hand){ if(c.val=='A') t+=1; else if(['K','Q','J'].includes(c.val)) t+=0; else t+=parseInt(c.val); } return t%10; }
+    document.getElementById("dealBacc").onclick=()=>{ let betType=document.getElementById("baccBetType").value; let bet=parseFloat(document.getElementById("baccBetAmt").value); if(isNaN(bet)||bet<=0)bet=10; if(!subBalance(bet)){document.getElementById("baccResult").innerHTML="Balance low!"; return;} let ph=[drawCard(),drawCard()]; let bh=[drawCard(),drawCard()]; let pS=baccScore(ph), bS=baccScore(bh); document.getElementById("bPcards").innerHTML=ph.map(c=>c.val+c.suit).join(' '); document.getElementById("bBcards").innerHTML=bh.map(c=>c.val+c.suit).join(' '); document.getElementById("bPscore").innerHTML=pS; document.getElementById("bBscore").innerHTML=bS; let winner=""; if(pS>bS) winner="player"; else if(bS>pS) winner="banker"; else winner="tie"; let winAmt=0; if(betType==="player" && winner==="player") winAmt=bet*2; else if(betType==="banker" && winner==="banker") winAmt=bet*1.95; else if(betType==="tie" && winner==="tie") winAmt=bet*8; if(winAmt>0){ addBalance(winAmt); document.getElementById("baccResult").innerHTML=`🎉 Win $${winAmt.toFixed(2)}! (${winner})`; } else { document.getElementById("baccResult").innerHTML=`😞 ${winner} wins. Lose $${bet.toFixed(2)}`; } };
+    
+    // Periodic checks for approvals
+    setInterval(() => {
+        checkForApprovedDeposits();
+        checkForApprovedWithdrawals();
+    }, 2000);
+    
+    updateBalanceUI();
+</script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Admin Panel - Royal Casino Deposit Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0f1e 0%, #0a1a0f 100%);
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+
+        .admin-container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .admin-header {
+            background: #0f0e17dd;
+            backdrop-filter: blur(10px);
+            border-radius: 2rem;
+            padding: 20px 30px;
+            margin-bottom: 30px;
+            border: 1px solid #ffb347;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .admin-header h1 {
+            background: linear-gradient(135deg, #ff9966, #ffd700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 1.8rem;
+        }
+
+        .badge {
+            background: #2e7d32;
+            padding: 8px 18px;
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+            background: #00000077;
+            padding: 10px 20px;
+            border-radius: 60px;
+        }
+
+        .stats span {
+            color: #ffd966;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        /* Main Panel */
+        .admin-panel {
+            background: #131410dd;
+            backdrop-filter: blur(8px);
+            border-radius: 2rem;
+            padding: 25px;
+            border: 1px solid #ffb34788;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            color: #ffcf4a;
+            border-left: 5px solid #ffb347;
+            padding-left: 18px;
+            margin-bottom: 25px;
+        }
+
+        /* Requests Table */
+        .requests-table {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #1e201ad9;
+            border-radius: 1.5rem;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 14px 12px;
+            text-align: left;
+            border-bottom: 1px solid #ffb34744;
+        }
+
+        th {
+            background: #ffb34722;
+            color: #ffd966;
+            font-weight: bold;
+        }
+
+        td {
+            color: #f0e6d0;
+        }
+
+        .pending-badge {
+            background: #ff9800;
+            color: #1e1e1e;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            display: inline-block;
+        }
+
+        .approved-badge {
+            background: #2e7d32;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .btn-approve {
+            background: #2e7d32;
+            border: none;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-right: 8px;
+            transition: 0.2s;
+        }
+
+        .btn-reject {
+            background: #8b2c2c;
+            border: none;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .btn-approve:hover, .btn-reject:hover {
+            transform: scale(0.95);
+            opacity: 0.9;
+        }
+
+        .empty-row {
+            text-align: center;
+
+padding: 40px;
+            color: #aaa;
+        }
+
+        /* Withdrawal Section */
+        .withdraw-section {
+            margin-top: 35px;
+            background: #1f2a1faa;
+            border-radius: 1.5rem;
+            padding: 20px;
+        }
+
+        .info-card {
+            background: #00000055;
+            border-radius: 1rem;
+            padding: 15px;
+            margin-top: 20px;
+            border: 1px solid #ffb34755;
+        }
+
+        .bkash-number {
+            font-size: 1.5rem;
+            color: #ff7b9c;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #aaa;
+            font-size: 0.8rem;
+        }
+
+        .refresh-btn {
+            background: #ffb347;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 15px;
+        }
+
+        .total-amount {
+            color: #4caf50;
+            font-size: 1.2rem;
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        @media (max-width: 768px) {
+            th, td {
+                padding: 8px 6px;
+                font-size: 0.8rem;
+            }
+            .admin-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="admin-container">
+    <div class="admin-header">
+        <div>
+            <h1>👑 ROYAL CASINO - ADMIN DASHBOARD</h1>
+            <p style="color: #ffd966; margin-top: 5px;">Deposit Approval & Management System</p>
+        </div>
+        <div class="stats">
+            <div>💰 Total Pending: $<span id="totalPendingAmount">0.00</span></div>
+            <div>📋 Pending Requests: <span id="pendingCount">0</span></div>
+            <button class="refresh-btn" id="refreshBtn">🔄 REFRESH</button>
+        </div>
+    </div>
+
+    <div class="admin-panel">
+        <div class="section-title">
+            📥 PENDING DEPOSIT REQUESTS (Bkash: 01860909272)
+        </div>
+        <div class="requests-table">
+            <table id="requestsTable">
+                <thead>
+                    <tr><th>ID</th><th>Amount ($)</th><th>Transaction ID</th><th>Date & Time</th><th>Status</th><th>Action</th></tr>
+                </thead>
+                <tbody id="requestsBody">
+                    <tr><td colspan="6" class="empty-row">Loading requests...</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="withdraw-section">
+            <div class="section-title" style="margin-top: 0;">💸 WITHDRAWAL INFORMATION</div>
+            <div class="info-card">
+                <p>📞 <strong>Bkash Number for Withdrawals:</strong> <span class="bkash-number">01860909272</span></p>
+                <p>✅ Users request withdrawals directly from casino page. Funds are deducted automatically from user balance.</p>
+                <p>🔐 As admin, you only need to <strong>APPROVE or REJECT</strong> deposit requests after verifying transaction ID.</p>
+                <p style="margin-top: 10px; color: #ffaa66;">⚠️ Important: When you click APPROVE, the amount will be instantly added to the user's casino balance via localStorage sync.</p>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <h3>📌 How it works:</h3>
+            <ol style="margin-left: 20px; margin-top: 10px; line-height: 1.8;">
+                <li>User submits deposit request with Bkash Transaction ID (sent to number 01860909272).</li>
+                <li>Request appears here in Admin Panel with PENDING status.</li>
+                <li>Admin verifies the transaction ID manually (check Bkash app).</li>
+                <li>Click <strong style="color:#4caf50;">APPROVE</strong> → Money added to user balance instantly.</li>
+                <li>Click <strong style="color:#f44336;">REJECT</strong> → Request removed.</li>
+                <li>User's casino page auto-detects approval and updates
+
+balance in real-time.</li>
+            </ol>
+        </div>
+    </div>
+    <footer>
+        🔐 Secure Admin Panel | Only accessible to casino managers | Deposits via Bkash 01860909272
+    </footer>
+</div>
+
+<script>
+    // ======================= ADMIN PANEL LOGIC =======================
+    // Uses localStorage to share deposit requests between casino & admin
+    
+    let currentRequests = [];
+    
+    // Load requests from localStorage
+    function loadRequests() {
+        let stored = localStorage.getItem("depositRequests");
+        if(stored) {
+            currentRequests = JSON.parse(stored);
+        } else {
+            currentRequests = [];
+        }
+        // Filter out any requests that are already processed fully (just to keep clean)
+        // But we keep all pending, approved, rejected.
+        renderTable();
+        updateStats();
+    }
+    
+    // Save requests to localStorage
+    function saveRequests() {
+        localStorage.setItem("depositRequests", JSON.stringify(currentRequests));
+        // Trigger storage event so casino page can update instantly
+        window.dispatchEvent(new StorageEvent('storage', {
+            key: 'depositRequests',
+            newValue: JSON.stringify(currentRequests)
+        }));
+    }
+    
+    // Update statistics
+    function updateStats() {
+        const pending = currentRequests.filter(r => r.status === 'pending');
+        const totalPending = pending.reduce((sum, r) => sum + r.amount, 0);
+        document.getElementById("totalPendingAmount").innerText = totalPending.toFixed(2);
+        document.getElementById("pendingCount").innerText = pending.length;
+    }
+    
+    // Render table
+    function renderTable() {
+        const tbody = document.getElementById("requestsBody");
+        if(!tbody) return;
+        
+        const pendingRequests = currentRequests.filter(r => r.status === 'pending');
+        const approvedOrRejected = currentRequests.filter(r => r.status !== 'pending');
+        // Show pending first, then history
+        const allDisplay = [...pendingRequests, ...approvedOrRejected];
+        
+        if(allDisplay.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="6" class="empty-row">✅ No deposit requests. All clear!</td></tr>';
+            return;
+        }
+        
+        tbody.innerHTML = "";
+        allDisplay.forEach(req => {
+            const row = tbody.insertRow();
+            row.insertCell(0).innerText = req.id;
+            row.insertCell(1).innerHTML = <strong>$${req.amount.toFixed(2)}</strong>;
+            row.insertCell(2).innerText = req.transactionId.length > 20 ? req.transactionId.substring(0,18)+'...' : req.transactionId;
+            row.insertCell(3).innerText = req.timestamp || new Date(req.id).toLocaleString();
+            
+            // Status cell
+            const statusCell = row.insertCell(4);
+            if(req.status === 'pending') {
+                statusCell.innerHTML = '<span class="pending-badge">⏳ PENDING</span>';
+            } else if(req.status === 'approved') {
+                statusCell.innerHTML = '<span class="approved-badge">✅ APPROVED</span>';
+            } else if(req.status === 'rejected') {
+                statusCell.innerHTML = '<span class="pending-badge" style="background:#8b2c2c;">❌ REJECTED</span>';
+            }
+            
+            // Action cell
+            const actionCell = row.insertCell(5);
+            if(req.status === 'pending') {
+                const approveBtn = document.createElement('button');
+                approveBtn.innerText = '✔ APPROVE';
+                approveBtn.className = 'btn-approve';
+                approveBtn.onclick = () => approveRequest(req.id);
+                
+                const rejectBtn = document.createElement('button');
+                rejectBtn.innerText = '✖ REJECT';
+                rejectBtn.className = 'btn-reject';
+                rejectBtn.onclick = () => rejectRequest(req.id);
+                
+                actionCell.appendChild(approveBtn);
+                actionCell.appendChild(rejectBtn);
+            } else {
+
+actionCell.innerText = req.status === 'approved' ? 'Completed' : 'Removed';
+                actionCell.style.color = '#888';
+            }
+        });
+    }
+    
+    // Approve deposit request
+    function approveRequest(requestId) {
+        const index = currentRequests.findIndex(r => r.id === requestId);
+        if(index !== -1 && currentRequests[index].status === 'pending') {
+            currentRequests[index].status = 'approved';
+            currentRequests[index].processed = false; // will be picked by casino
+            saveRequests();
+            loadRequests(); // re-render
+            showToast(✅ Approved $${currentRequests[index].amount} - User will receive funds instantly, "success");
+        } else {
+            showToast("❌ Request not found or already processed", "error");
+        }
+    }
+    
+    // Reject deposit request
+    function rejectRequest(requestId) {
+        const index = currentRequests.findIndex(r => r.id === requestId);
+        if(index !== -1 && currentRequests[index].status === 'pending') {
+            currentRequests[index].status = 'rejected';
+            currentRequests[index].processed = true; // no money added
+            saveRequests();
+            loadRequests();
+            showToast(❌ Rejected deposit request for $${currentRequests[index].amount}, "error");
+        }
+    }
+    
+    // Simple toast message
+    function showToast(message, type) {
+        // Create temporary toast element
+        const toast = document.createElement('div');
+        toast.innerText = message;
+        toast.style.position = 'fixed';
+        toast.style.bottom = '20px';
+        toast.style.right = '20px';
+        toast.style.backgroundColor = type === 'success' ? '#2e7d32' : '#8b2c2c';
+        toast.style.color = 'white';
+        toast.style.padding = '12px 24px';
+        toast.style.borderRadius = '50px';
+        toast.style.zIndex = '9999';
+        toast.style.fontWeight = 'bold';
+        toast.style.boxShadow = '0 4px 12px black';
+        toast.style.animation = 'fadeInOut 3s ease';
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.remove();
+        }, 3000);
+    }
+    
+    // Add animation keyframes dynamically
+    const style = document.createElement('style');
+    style.textContent = 
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(20px); }
+            10% { opacity: 1; transform: translateY(0); }
+            90% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(20px); }
+        }
+    ;
+    document.head.appendChild(style);
+    
+    // Refresh button
+    document.getElementById("refreshBtn").addEventListener("click", () => {
+        loadRequests();
+        showToast("🔄 Requests refreshed!", "success");
+    });
+    
+    // Listen to storage changes from casino (if any)
+    window.addEventListener('storage', (event) => {
+        if(event.key === 'depositRequests') {
+            loadRequests();
+        }
+    });
+    
+    // Load initial data and also cleanup old rejected/approved older than 1 hour optionally (keep recent)
+    function cleanupOldRequests() {
+        const oneHourAgo = Date.now() - (60 * 60 * 1000);
+        const filtered = currentRequests.filter(req => {
+            // Keep pending requests forever, but remove processed approved/rejected older than 1 hour for cleanliness
+            if(req.status !== 'pending' && req.processed && (req.id < oneHourAgo)) {
+                return false;
+            }
+            return true;
+        });
+        if(filtered.length !== currentRequests.length) {
+            currentRequests = filtered;
+            saveRequests();
+        }
+    }
+    
+    // Initial render
+    loadRequests();
+    cleanupOldRequests();
+    
+    // Auto refresh every 3 seconds for realtime sync (so admin sees new requests instantly)
+
+    setInterval(() => {
+        loadRequests();
+    }, 3000);
+    
+    // Display welcome info in console
+    console.log("Admin Panel Active | Bkash Number: 01860909272 | Approve deposits to add user balance.");
+</script>
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Admin Panel - Royal Casino Deposit Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0f1e 0%, #0a1a0f 100%);
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+
+        .admin-container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .admin-header {
+            background: #0f0e17dd;
+            backdrop-filter: blur(10px);
+            border-radius: 2rem;
+            padding: 20px 30px;
+            margin-bottom: 30px;
+            border: 1px solid #ffb347;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .admin-header h1 {
+            background: linear-gradient(135deg, #ff9966, #ffd700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 1.8rem;
+        }
+
+        .badge {
+            background: #2e7d32;
+            padding: 8px 18px;
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+            background: #00000077;
+            padding: 10px 20px;
+            border-radius: 60px;
+        }
+
+        .stats span {
+            color: #ffd966;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        /* Main Panel */
+        .admin-panel {
+            background: #131410dd;
+            backdrop-filter: blur(8px);
+            border-radius: 2rem;
+            padding: 25px;
+            border: 1px solid #ffb34788;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            color: #ffcf4a;
+            border-left: 5px solid #ffb347;
+            padding-left: 18px;
+            margin-bottom: 25px;
+        }
+
+        /* Requests Table */
+        .requests-table {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #1e201ad9;
+            border-radius: 1.5rem;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 14px 12px;
+            text-align: left;
+            border-bottom: 1px solid #ffb34744;
+        }
+
+        th {
+            background: #ffb34722;
+            color: #ffd966;
+            font-weight: bold;
+        }
+
+        td {
+            color: #f0e6d0;
+        }
+
+        .pending-badge {
+            background: #ff9800;
+            color: #1e1e1e;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            display: inline-block;
+        }
+
+        .approved-badge {
+            background: #2e7d32;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .btn-approve {
+            background: #2e7d32;
+            border: none;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-right: 8px;
+            transition: 0.2s;
+        }
+
+        .btn-reject {
+            background: #8b2c2c;
+            border: none;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .btn-approve:hover, .btn-reject:hover {
+            transform: scale(0.95);
+            opacity: 0.9;
+        }
+
+        .empty-row {
+            text-align: center;
+
+padding: 40px;
+            color: #aaa;
+        }
+
+        /* Withdrawal Section */
+        .withdraw-section {
+            margin-top: 35px;
+            background: #1f2a1faa;
+            border-radius: 1.5rem;
+            padding: 20px;
+        }
+
+        .info-card {
+            background: #00000055;
+            border-radius: 1rem;
+            padding: 15px;
+            margin-top: 20px;
+            border: 1px solid #ffb34755;
+        }
+
+        .bkash-number {
+            font-size: 1.5rem;
+            color: #ff7b9c;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #aaa;
+            font-size: 0.8rem;
+        }
+
+        .refresh-btn {
+            background: #ffb347;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 15px;
+        }
+
+        .total-amount {
+            color: #4caf50;
+            font-size: 1.2rem;
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        @media (max-width: 768px) {
+            th, td {
+                padding: 8px 6px;
+                font-size: 0.8rem;
+            }
+            .admin-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="admin-container">
+    <div class="admin-header">
+        <div>
+            <h1>👑 ROYAL CASINO - ADMIN DASHBOARD</h1>
+            <p style="color: #ffd966; margin-top: 5px;">Deposit Approval & Management System</p>
+        </div>
+        <div class="stats">
+            <div>💰 Total Pending: $<span id="totalPendingAmount">0.00</span></div>
+            <div>📋 Pending Requests: <span id="pendingCount">0</span></div>
+            <button class="refresh-btn" id="refreshBtn">🔄 REFRESH</button>
+        </div>
+    </div>
+
+    <div class="admin-panel">
+        <div class="section-title">
+            📥 PENDING DEPOSIT REQUESTS (Bkash: 01860909272)
+        </div>
+        <div class="requests-table">
+            <table id="requestsTable">
+                <thead>
+                    <tr><th>ID</th><th>Amount ($)</th><th>Transaction ID</th><th>Date & Time</th><th>Status</th><th>Action</th></tr>
+                </thead>
+                <tbody id="requestsBody">
+                    <tr><td colspan="6" class="empty-row">Loading requests...</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="withdraw-section">
+            <div class="section-title" style="margin-top: 0;">💸 WITHDRAWAL INFORMATION</div>
+            <div class="info-card">
+                <p>📞 <strong>Bkash Number for Withdrawals:</strong> <span class="bkash-number">01860909272</span></p>
+                <p>✅ Users request withdrawals directly from casino page. Funds are deducted automatically from user balance.</p>
+                <p>🔐 As admin, you only need to <strong>APPROVE or REJECT</strong> deposit requests after verifying transaction ID.</p>
+                <p style="margin-top: 10px; color: #ffaa66;">⚠️ Important: When you click APPROVE, the amount will be instantly added to the user's casino balance via localStorage sync.</p>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <h3>📌 How it works:</h3>
+            <ol style="margin-left: 20px; margin-top: 10px; line-height: 1.8;">
+                <li>User submits deposit request with Bkash Transaction ID (sent to number 01860909272).</li>
+                <li>Request appears here in Admin Panel with PENDING status.</li>
+                <li>Admin verifies the transaction ID manually (check Bkash app).</li>
+                <li>Click <strong style="color:#4caf50;">APPROVE</strong> → Money added to user balance instantly.</li>
+                <li>Click <strong style="color:#f44336;">REJECT</strong> → Request removed.</li>
+                <li>User's casino page auto-detects approval and updates
+
+balance in real-time.</li>
+            </ol>
+        </div>
+    </div>
+    <footer>
+        🔐 Secure Admin Panel | Only accessible to casino managers | Deposits via Bkash 01860909272
+    </footer>
+</div>
+
+<script>
+    // ======================= ADMIN PANEL LOGIC =======================
+    // Uses localStorage to share deposit requests between casino & admin
+    
+    let currentRequests = [];
+    
+    // Load requests from localStorage
+    function loadRequests() {
+        let stored = localStorage.getItem("depositRequests");
+        if(stored) {
+            currentRequests = JSON.parse(stored);
+        } else {
+            currentRequests = [];
+        }
+        // Filter out any requests that are already processed fully (just to keep clean)
+        // But we keep all pending, approved, rejected.
+        renderTable();
+        updateStats();
+    }
+    
+    // Save requests to localStorage
+    function saveRequests() {
+        localStorage.setItem("depositRequests", JSON.stringify(currentRequests));
+        // Trigger storage event so casino page can update instantly
+        window.dispatchEvent(new StorageEvent('storage', {
+            key: 'depositRequests',
+            newValue: JSON.stringify(currentRequests)
+        }));
+    }
+    
+    // Update statistics
+    function updateStats() {
+        const pending = currentRequests.filter(r => r.status === 'pending');
+        const totalPending = pending.reduce((sum, r) => sum + r.amount, 0);
+        document.getElementById("totalPendingAmount").innerText = totalPending.toFixed(2);
+        document.getElementById("pendingCount").innerText = pending.length;
+    }
+    
+    // Render table
+    function renderTable() {
+        const tbody = document.getElementById("requestsBody");
+        if(!tbody) return;
+        
+        const pendingRequests = currentRequests.filter(r => r.status === 'pending');
+        const approvedOrRejected = currentRequests.filter(r => r.status !== 'pending');
+        // Show pending first, then history
+        const allDisplay = [...pendingRequests, ...approvedOrRejected];
+        
+        if(allDisplay.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="6" class="empty-row">✅ No deposit requests. All clear!</td></tr>';
+            return;
+        }
+        
+        tbody.innerHTML = "";
+        allDisplay.forEach(req => {
+            const row = tbody.insertRow();
+            row.insertCell(0).innerText = req.id;
+            row.insertCell(1).innerHTML = <strong>$${req.amount.toFixed(2)}</strong>;
+            row.insertCell(2).innerText = req.transactionId.length > 20 ? req.transactionId.substring(0,18)+'...' : req.transactionId;
+            row.insertCell(3).innerText = req.timestamp || new Date(req.id).toLocaleString();
+            
+            // Status cell
+            const statusCell = row.insertCell(4);
+            if(req.status === 'pending') {
+                statusCell.innerHTML = '<span class="pending-badge">⏳ PENDING</span>';
+            } else if(req.status === 'approved') {
+                statusCell.innerHTML = '<span class="approved-badge">✅ APPROVED</span>';
+
+            } else if(req.status === 'rejected') {
+                statusCell.innerHTML = '<span class="pending-badge" style="background:#8b2c2c;">❌ REJECTED</span>';
+            }
+            
+            // Action cell
+            const actionCell = row.insertCell(5);
+            if(req.status === 'pending') {
+                const approveBtn = document.createElement('button');
+                approveBtn.innerText = '✔ APPROVE';
+                approveBtn.className = 'btn-approve';
+                approveBtn.onclick = () => approveRequest(req.id);
+                
+                const rejectBtn = document.createElement('button');
+                rejectBtn.innerText = '✖ REJECT';
+                rejectBtn.className = 'btn-reject';
+                rejectBtn.onclick = () => rejectRequest(req.id);
+                
+                actionCell.appendChild(approveBtn);
+                actionCell.appendChild(rejectBtn);
+            } else {
+
+actionCell.innerText = req.status === 'approved' ? 'Completed' : 'Removed';
+                actionCell.style.color = '#888';
+            }
+        });
+    }
+    
+    // Approve deposit request
+    function approveRequest(requestId) {
+        const index = currentRequests.findIndex(r => r.id === requestId);
+        if(index !== -1 && currentRequests[index].status === 'pending') {
+            currentRequests[index].status = 'approved';
+            currentRequests[index].processed = false; // will be picked by casino
+            saveRequests();
+            loadRequests(); // re-render
+            showToast(✅ Approved $${currentRequests[index].amount} - User will receive funds instantly, "success");
+        } else {
+            showToast("❌ Request not found or already processed", "error");
+        }
+    }
+    
+    // Reject deposit request
+    function rejectRequest(requestId) {
+        const index = currentRequests.findIndex(r => r.id === requestId);
+        if(index !== -1 && currentRequests[index].status === 'pending') {
+            currentRequests[index].status = 'rejected';
+            currentRequests[index].processed = true; // no money added
+            saveRequests();
+            loadRequests();
+            showToast(❌ Rejected deposit request for $${currentRequests[index].amount}, "error");
+        }
+    }
+    
+    // Simple toast message
+    function showToast(message, type) {
+        // Create temporary toast element
+        const toast = document.createElement('div');
+        toast.innerText = message;
+        toast.style.position = 'fixed';
+        toast.style.bottom = '20px';
+        toast.style.right = '20px';
+        toast.style.backgroundColor = type === 'success' ? '#2e7d32' : '#8b2c2c';
+        toast.style.color = 'white';
+        toast.style.padding = '12px 24px';
+        toast.style.borderRadius = '50px';
+        toast.style.zIndex = '9999';
+        toast.style.fontWeight = 'bold';
+        toast.style.boxShadow = '0 4px 12px black';
+        toast.style.animation = 'fadeInOut 3s ease';
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.remove();
+        }, 3000);
+    }
+    
+    // Add animation keyframes dynamically
+    const style = document.createElement('style');
+    style.textContent = 
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(20px); }
+            10% { opacity: 1; transform: translateY(0); }
+            90% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(20px); }
+        }
+    ;
+    document.head.appendChild(style);
+    
+    // Refresh button
+    document.getElementById("refreshBtn").addEventListener("click", () => {
+        loadRequests();
+        showToast("🔄 Requests refreshed!", "success");
+    });
+    
+    // Listen to storage changes from casino (if any)
+
+    window.addEventListener('storage', (event) => {
+        if(event.key === 'depositRequests') {
+            loadRequests();
+        }
+    });
+    
+    // Load initial data and also cleanup old rejected/approved older than 1 hour optionally (keep recent)
+    function cleanupOldRequests() {
+        const oneHourAgo = Date.now() - (60 * 60 * 1000);
+        const filtered = currentRequests.filter(req => {
+            // Keep pending requests forever, but remove processed approved/rejected older than 1 hour for cleanliness
+            if(req.status !== 'pending' && req.processed && (req.id < oneHourAgo)) {
+                return false;
+            }
+            return true;
+        });
+        if(filtered.length !== currentRequests.length) {
+            currentRequests = filtered;
+            saveRequests();
+        }
+    }
+    
+    // Initial render
+    loadRequests();
+    cleanupOldRequests();
+    
+    // Auto refresh every 3 seconds for realtime sync (so admin sees new requests instantly)
+    setInterval(() => {
+        loadRequests();
+    }, 3000);
+    
+    // Display welcome info in console
+    console.log("Admin Panel Active | Bkash Number: 01860909272 | Approve deposits to add user balance.");
+</script>
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Admin Panel - Royal Casino Deposit Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0f1e 0%, #0a1a0f 100%);
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+
+        .admin-container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .admin-header {
+            background: #0f0e17dd;
+            backdrop-filter: blur(10px);
+            border-radius: 2rem;
+            padding: 20px 30px;
+            margin-bottom: 30px;
+            border: 1px solid #ffb347;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .admin-header h1 {
+            background: linear-gradient(135deg, #ff9966, #ffd700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 1.8rem;
+        }
+
+        .badge {
+            background: #2e7d32;
+            padding: 8px 18px;
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+            background: #00000077;
+            padding: 10px 20px;
+            border-radius: 60px;
+        }
+
+        .stats span {
+            color: #ffd966;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        /* Main Panel */
+        .admin-panel {
+            background: #131410dd;
+            backdrop-filter: blur(8px);
+            border-radius: 2rem;
+            padding: 25px;
+            border: 1px solid #ffb34788;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            color: #ffcf4a;
+            border-left: 5px solid #ffb347;
+            padding-left: 18px;
+            margin-bottom: 25px;
+        }
+
+        /* Requests Table */
+        .requests-table {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #1e201ad9;
+            border-radius: 1.5rem;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 14px 12px;
+            text-align: left;
+            border-bottom: 1px solid #ffb34744;
+        }
+
+        th {
+            background: #ffb34722;
+            color: #ffd966;
+            font-weight: bold;
+        }
+
+        td {
+            color: #f0e6d0;
+        }
+
+        .pending-badge {
+            background: #ff9800;
+            color: #1e1e1e;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            display: inline-block;
+        }
+
+        .approved-badge {
+            background: #2e7d32;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .btn-approve {
+            background: #2e7d32;
+            border: none;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-right: 8px;
+            transition: 0.2s;
+        }
+
+        .btn-reject {
+            background: #8b2c2c;
+            border: none;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .btn-approve:hover, .btn-reject:hover {
+            transform: scale(0.95);
+            opacity: 0.9;
+        }
+
+        .empty-row {
+            text-align: center;
+
+padding: 40px;
+            color: #aaa;
+        }
+
+        /* Withdrawal Section */
+        .withdraw-section {
+            margin-top: 35px;
+            background: #1f2a1faa;
+            border-radius: 1.5rem;
+            padding: 20px;
+        }
+
+        .info-card {
+            background: #00000055;
+            border-radius: 1rem;
+            padding: 15px;
+            margin-top: 20px;
+            border: 1px solid #ffb34755;
+        }
+
+        .bkash-number {
+            font-size: 1.5rem;
+            color: #ff7b9c;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #aaa;
+            font-size: 0.8rem;
+        }
+
+        .refresh-btn {
+            background: #ffb347;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 15px;
+        }
+
+        .total-amount {
+            color: #4caf50;
+            font-size: 1.2rem;
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        @media (max-width: 768px) {
+            th, td {
+                padding: 8px 6px;
+                font-size: 0.8rem;
+            }
+            .admin-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="admin-container">
+    <div class="admin-header">
+        <div>
+            <h1>👑 ROYAL CASINO - ADMIN DASHBOARD</h1>
+            <p style="color: #ffd966; margin-top: 5px;">Deposit Approval & Management System</p>
+        </div>
+        <div class="stats">
+            <div>💰 Total Pending: $<span id="totalPendingAmount">0.00</span></div>
+            <div>📋 Pending Requests: <span id="pendingCount">0</span></div>
+            <button class="refresh-btn" id="refreshBtn">🔄 REFRESH</button>
+        </div>
+    </div>
+
+    <div class="admin-panel">
+        <div class="section-title">
+            📥 PENDING DEPOSIT REQUESTS (Bkash: 01860909272)
+        </div>
+        <div class="requests-table">
+            <table id="requestsTable">
+                <thead>
+                    <tr><th>ID</th><th>Amount ($)</th><th>Transaction ID</th><th>Date & Time</th><th>Status</th><th>Action</th></tr>
+                </thead>
+                <tbody id="requestsBody">
+                    <tr><td colspan="6" class="empty-row">Loading requests...</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="withdraw-section">
+            <div class="section-title" style="margin-top: 0;">💸 WITHDRAWAL INFORMATION</div>
+            <div class="info-card">
+                <p>📞 <strong>Bkash Number for Withdrawals:</strong> <span class="bkash-number">01860909272</span></p>
+                <p>✅ Users request withdrawals directly from casino page. Funds are deducted automatically from user balance.</p>
+                <p>🔐 As admin, you only need to <strong>APPROVE or REJECT</strong> deposit requests after verifying transaction ID.</p>
+                <p style="margin-top: 10px; color: #ffaa66;">⚠️ Important: When you click APPROVE, the amount will be instantly added to the user's casino balance via localStorage sync.</p>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <h3>📌 How it works:</h3>
+            <ol style="margin-left: 20px; margin-top: 10px; line-height: 1.8;">
+                <li>User submits deposit request with Bkash Transaction ID (sent to number 01860909272).</li>
+                <li>Request appears here in Admin Panel with PENDING status.</li>
+                <li>Admin verifies the transaction ID manually (check Bkash app).</li>
+                <li>Click <strong style="color:#4caf50;">APPROVE</strong> → Money added to user balance instantly.</li>
+                <li>Click <strong style="color:#f44336;">REJECT</strong> → Request removed.</li>
+                <li>User's casino page auto-detects approval and updates
+
+balance in real-time.</li>
+            </ol>
+        </div>
+    </div>
+    <footer>
+        🔐 Secure Admin Panel | Only accessible to casino managers | Deposits via Bkash 01860909272
+    </footer>
+</div>
+
+<script>
+    // ======================= ADMIN PANEL LOGIC =======================
+    // Uses localStorage to share deposit requests between casino & admin
+    
+    let currentRequests = [];
+    
+    // Load requests from localStorage
+    function loadRequests() {
+        let stored = localStorage.getItem("depositRequests");
+        if(stored) {
+            currentRequests = JSON.parse(stored);
+        } else {
+            currentRequests = [];
+        }
+        // Filter out any requests that are already processed fully (just to keep clean)
+        // But we keep all pending, approved, rejected.
+        renderTable();
+        updateStats();
+    }
+    
+    // Save requests to localStorage
+    function saveRequests() {
+        localStorage.setItem("depositRequests", JSON.stringify(currentRequests));
+        // Trigger storage event so casino page can update instantly
+        window.dispatchEvent(new StorageEvent('storage', {
+            key: 'depositRequests',
+            newValue: JSON.stringify(currentRequests)
+        }));
+    }
+    
+    // Update statistics
+    function updateStats() {
+        const pending = currentRequests.filter(r => r.status === 'pending');
+        const totalPending = pending.reduce((sum, r) => sum + r.amount, 0);
+        document.getElementById("totalPendingAmount").innerText = totalPending.toFixed(2);
+        document.getElementById("pendingCount").innerText = pending.length;
+    }
+    
+    // Render table
+    function renderTable() {
+        const tbody = document.getElementById("requestsBody");
+        if(!tbody) return;
+        
+        const pendingRequests = currentRequests.filter(r => r.status === 'pending');
+        const approvedOrRejected = currentRequests.filter(r => r.status !== 'pending');
+        // Show pending first, then history
+        const allDisplay = [...pendingRequests, ...approvedOrRejected];
+        
+        if(allDisplay.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="6" class="empty-row">✅ No deposit requests. All clear!</td></tr>';
+            return;
+        }
+        
+        tbody.innerHTML = "";
+
+        allDisplay.forEach(req => {
+            const row = tbody.insertRow();
+            row.insertCell(0).innerText = req.id;
+            row.insertCell(1).innerHTML = <strong>$${req.amount.toFixed(2)}</strong>;
+            row.insertCell(2).innerText = req.transactionId.length > 20 ? req.transactionId.substring(0,18)+'...' : req.transactionId;
+            row.insertCell(3).innerText = req.timestamp || new Date(req.id).toLocaleString();
+            
+            // Status cell
+            const statusCell = row.insertCell(4);
+            if(req.status === 'pending') {
+                statusCell.innerHTML = '<span class="pending-badge">⏳ PENDING</span>';
+            } else if(req.status === 'approved') {
+                statusCell.innerHTML = '<span class="approved-badge">✅ APPROVED</span>';
+            } else if(req.status === 'rejected') {
+                statusCell.innerHTML = '<span class="pending-badge" style="background:#8b2c2c;">❌ REJECTED</span>';
+            }
+            
+            // Action cell
+            const actionCell = row.insertCell(5);
+            if(req.status === 'pending') {
+                const approveBtn = document.createElement('button');
+                approveBtn.innerText = '✔ APPROVE';
+                approveBtn.className = 'btn-approve';
+                approveBtn.onclick = () => approveRequest(req.id);
+                
+                const rejectBtn = document.createElement('button');
+                rejectBtn.innerText = '✖ REJECT';
+                rejectBtn.className = 'btn-reject';
+                rejectBtn.onclick = () => rejectRequest(req.id);
+                
+                actionCell.appendChild(approveBtn);
+                actionCell.appendChild(rejectBtn);
+            } else {
+
+actionCell.innerText = req.status === 'approved' ? 'Completed' : 'Removed';
+                actionCell.style.color = '#888';
+            }
+        });
+    }
+    
+    // Approve deposit request
+    function approveRequest(requestId) {
+        const index = currentRequests.findIndex(r => r.id === requestId);
+        if(index !== -1 && currentRequests[index].status === 'pending') {
+            currentRequests[index].status = 'approved';
+            currentRequests[index].processed = false; // will be picked by casino
+            saveRequests();
+            loadRequests(); // re-render
+            showToast(✅ Approved $${currentRequests[index].amount} - User will receive funds instantly, "success");
+        } else {
+            showToast("❌ Request not found or already processed", "error");
+        }
+    }
+    
+    // Reject deposit request
+    function rejectRequest(requestId) {
+        const index = currentRequests.findIndex(r => r.id === requestId);
+        if(index !== -1 && currentRequests[index].status === 'pending') {
+            currentRequests[index].status = 'rejected';
+            currentRequests[index].processed = true; // no money added
+            saveRequests();
+            loadRequests();
+            showToast(❌ Rejected deposit request for $${currentRequests[index].amount}, "error");
+        }
+    }
+    
+    // Simple toast message
+    function showToast(message, type) {
+        // Create temporary toast element
+        const toast = document.createElement('div');
+        toast.innerText = message;
+        toast.style.position = 'fixed';
+        toast.style.bottom = '20px';
+        toast.style.right = '20px';
+        toast.style.backgroundColor = type === 'success' ? '#2e7d32' : '#8b2c2c';
+        toast.style.color = 'white';
+        toast.style.padding = '12px 24px';
+        toast.style.borderRadius = '50px';
+        toast.style.zIndex = '9999';
+        toast.style.fontWeight = 'bold';
+        toast.style.boxShadow = '0 4px 12px black';
+        toast.style.animation = 'fadeInOut 3s ease';
+        document.body.appendChild(toast);
+
+        setTimeout(() => {
+            toast.remove();
+        }, 3000);
+    }
+    
+    // Add animation keyframes dynamically
+    const style = document.createElement('style');
+    style.textContent = 
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(20px); }
+            10% { opacity: 1; transform: translateY(0); }
+            90% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(20px); }
+        }
+    ;
+    document.head.appendChild(style);
+    
+    // Refresh button
+    document.getElementById("refreshBtn").addEventListener("click", () => {
+        loadRequests();
+        showToast("🔄 Requests refreshed!", "success");
+    });
+    
+    // Listen to storage changes from casino (if any)
+    window.addEventListener('storage', (event) => {
+        if(event.key === 'depositRequests') {
+            loadRequests();
+        }
+    });
+    
+    // Load initial data and also cleanup old rejected/approved older than 1 hour optionally (keep recent)
+    function cleanupOldRequests() {
+        const oneHourAgo = Date.now() - (60 * 60 * 1000);
+        const filtered = currentRequests.filter(req => {
+            // Keep pending requests forever, but remove processed approved/rejected older than 1 hour for cleanliness
+            if(req.status !== 'pending' && req.processed && (req.id < oneHourAgo)) {
+                return false;
+            }
+            return true;
+        });
+        if(filtered.length !== currentRequests.length) {
+            currentRequests = filtered;
+            saveRequests();
+        }
+    }
+    
+    // Initial render
+    loadRequests();
+    cleanupOldRequests();
+    
+    // Auto refresh every 3 seconds for realtime sync (so admin sees new requests instantly)
+    setInterval(() => {
+        loadRequests();
+    }, 3000);
+    
+    // Display welcome info in console
+    console.log("Admin Panel Active | Bkash Number: 01860909272 | Approve deposits to add user balance.");
+</script>
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Admin Panel - Royal Casino Deposit Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0f1e 0%, #0a1a0f 100%);
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+
+        .admin-container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .admin-header {
+            background: #0f0e17dd;
+            backdrop-filter: blur(10px);
+            border-radius: 2rem;
+            padding: 20px 30px;
+            margin-bottom: 30px;
+            border: 1px solid #ffb347;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .admin-header h1 {
+            background: linear-gradient(135deg, #ff9966, #ffd700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 1.8rem;
+        }
+
+        .badge {
+            background: #2e7d32;
+            padding: 8px 18px;
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+            background: #00000077;
+            padding: 10px 20px;
+            border-radius: 60px;
+        }
+
+        .stats span {
+            color: #ffd966;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        /* Main Panel */
+        .admin-panel {
+            background: #131410dd;
+            backdrop-filter: blur(8px);
+            border-radius: 2rem;
+            padding: 25px;
+            border: 1px solid #ffb34788;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            color: #ffcf4a;
+            border-left: 5px solid #ffb347;
+            padding-left: 18px;
+            margin-bottom: 25px;
+        }
+
+        /* Requests Table */
+        .requests-table {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #1e201ad9;
+            border-radius: 1.5rem;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 14px 12px;
+            text-align: left;
+            border-bottom: 1px solid #ffb34744;
+        }
+
+        th {
+            background: #ffb34722;
+            color: #ffd966;
+            font-weight: bold;
+        }
+
+        td {
+            color: #f0e6d0;
+        }
+
+        .pending-badge {
+            background: #ff9800;
+            color: #1e1e1e;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            display: inline-block;
+        }
+
+        .approved-badge {
+            background: #2e7d32;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .btn-approve {
+            background: #2e7d32;
+            border: none;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-right: 8px;
+            transition: 0.2s;
+        }
+
+        .btn-reject {
+            background: #8b2c2c;
+            border: none;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .btn-approve:hover, .btn-reject:hover {
+            transform: scale(0.95);
+            opacity: 0.9;
+        }
+
+        .empty-row {
+            text-align: center;
+
+padding: 40px;
+            color: #aaa;
+        }
+
+        /* Withdrawal Section */
+        .withdraw-section {
+            margin-top: 35px;
+            background: #1f2a1faa;
+            border-radius: 1.5rem;
+            padding: 20px;
+        }
+
+        .info-card {
+            background: #00000055;
+            border-radius: 1rem;
+            padding: 15px;
+            margin-top: 20px;
+            border: 1px solid #ffb34755;
+        }
+
+        .bkash-number {
+            font-size: 1.5rem;
+            color: #ff7b9c;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #aaa;
+            font-size: 0.8rem;
+        }
+
+        .refresh-btn {
+            background: #ffb347;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 15px;
+        }
+
+        .total-amount {
+            color: #4caf50;
+            font-size: 1.2rem;
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        @media (max-width: 768px) {
+            th, td {
+                padding: 8px 6px;
+                font-size: 0.8rem;
+            }
+            .admin-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="admin-container">
+    <div class="admin-header">
+        <div>
+            <h1>👑 ROYAL CASINO - ADMIN DASHBOARD</h1>
+            <p style="color: #ffd966; margin-top: 5px;">Deposit Approval & Management System</p>
+        </div>
+        <div class="stats">
+            <div>💰 Total Pending: $<span id="totalPendingAmount">0.00</span></div>
+            <div>📋 Pending Requests: <span id="pendingCount">0</span></div>
+            <button class="refresh-btn" id="refreshBtn">🔄 REFRESH</button>
+        </div>
+    </div>
+
+    <div class="admin-panel">
+        <div class="section-title">
+            📥 PENDING DEPOSIT REQUESTS (Bkash: 01860909272)
+        </div>
+        <div class="requests-table">
+            <table id="requestsTable">
+                <thead>
+                    <tr><th>ID</th><th>Amount ($)</th><th>Transaction ID</th><th>Date & Time</th><th>Status</th><th>Action</th></tr>
+                </thead>
+                <tbody id="requestsBody">
+                    <tr><td colspan="6" class="empty-row">Loading requests...</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="withdraw-section">
+            <div class="section-title" style="margin-top: 0;">💸 WITHDRAWAL INFORMATION</div>
+            <div class="info-card">
+                <p>📞 <strong>Bkash Number for Withdrawals:</strong> <span class="bkash-number">01860909272</span></p>
+                <p>✅ Users request withdrawals directly from casino page. Funds are deducted automatically from user balance.</p>
+                <p>🔐 As admin, you only need to <strong>APPROVE or REJECT</strong> deposit requests after verifying transaction ID.</p>
+                <p style="margin-top: 10px; color: #ffaa66;">⚠️ Important: When you click APPROVE, the amount will be instantly added to the user's casino balance via localStorage sync.</p>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <h3>📌 How it works:</h3>
+            <ol style="margin-left: 20px; margin-top: 10px; line-height: 1.8;">
+                <li>User submits deposit request with Bkash Transaction ID (sent to number 01860909272).</li>
+                <li>Request appears here in Admin Panel with PENDING status.</li>
+                <li>Admin verifies the transaction ID manually (check Bkash app).</li>
+                <li>Click <strong style="color:#4caf50;">APPROVE</strong> → Money added to user balance instantly.</li>
+                <li>Click <strong style="color:#f44336;">REJECT</strong> → Request removed.</li>
+                <li>User's casino page auto-detects approval and updates
+
+balance in real-time.</li>
+            </ol>
+        </div>
+    </div>
+    <footer>
+        🔐 Secure Admin Panel | Only accessible to casino managers | Deposits via Bkash 01860909272
+    </footer>
+</div>
+
+<script>
+    // ======================= ADMIN PANEL LOGIC =======================
+    // Uses localStorage to share deposit requests between casino & admin
+    
+    let currentRequests = [];
+    
+    // Load requests from localStorage
+    function loadRequests() {
+        let stored = localStorage.getItem("depositRequests");
+        if(stored) {
+            currentRequests = JSON.parse(stored);
+        } else {
+            currentRequests = [];
+        }
+        // Filter out any requests that are already processed fully (just to keep clean)
+        // But we keep all pending, approved, rejected.
+        renderTable();
+        updateStats();
+    }
+    
+    // Save requests to localStorage
+    function saveRequests() {
+        localStorage.setItem("depositRequests", JSON.stringify(currentRequests));
+        // Trigger storage event so casino page can update instantly
+        window.dispatchEvent(new StorageEvent('storage', {
+            key: 'depositRequests',
+            newValue: JSON.stringify(currentRequests)
+        }));
+    }
+    
+    // Update statistics
+    function updateStats() {
+        const pending = currentRequests.filter(r => r.status === 'pending');
+        const totalPending = pending.reduce((sum, r) => sum + r.amount, 0);
+        document.getElementById("totalPendingAmount").innerText = totalPending.toFixed(2);
+        document.getElementById("pendingCount").innerText = pending.length;
+    }
+    
+    // Render table
+    function renderTable() {
+        const tbody = document.getElementById("requestsBody");
+
+        if(!tbody) return;
+        
+        const pendingRequests = currentRequests.filter(r => r.status === 'pending');
+        const approvedOrRejected = currentRequests.filter(r => r.status !== 'pending');
+        // Show pending first, then history
+        const allDisplay = [...pendingRequests, ...approvedOrRejected];
+        
+        if(allDisplay.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="6" class="empty-row">✅ No deposit requests. All clear!</td></tr>';
+            return;
+        }
+        
+        tbody.innerHTML = "";
+        allDisplay.forEach(req => {
+            const row = tbody.insertRow();
+            row.insertCell(0).innerText = req.id;
+            row.insertCell(1).innerHTML = <strong>$${req.amount.toFixed(2)}</strong>;
+            row.insertCell(2).innerText = req.transactionId.length > 20 ? req.transactionId.substring(0,18)+'...' : req.transactionId;
+            row.insertCell(3).innerText = req.timestamp || new Date(req.id).toLocaleString();
+            
+            // Status cell
+            const statusCell = row.insertCell(4);
+            if(req.status === 'pending') {
+                statusCell.innerHTML = '<span class="pending-badge">⏳ PENDING</span>';
+            } else if(req.status === 'approved') {
+                statusCell.innerHTML = '<span class="approved-badge">✅ APPROVED</span>';
+            } else if(req.status === 'rejected') {
+                statusCell.innerHTML = '<span class="pending-badge" style="background:#8b2c2c;">❌ REJECTED</span>';
+            }
+            
+            // Action cell
+            const actionCell = row.insertCell(5);
+            if(req.status === 'pending') {
+                const approveBtn = document.createElement('button');
+                approveBtn.innerText = '✔ APPROVE';
+                approveBtn.className = 'btn-approve';
+                approveBtn.onclick = () => approveRequest(req.id);
+                
+                const rejectBtn = document.createElement('button');
+                rejectBtn.innerText = '✖ REJECT';
+                rejectBtn.className = 'btn-reject';
+                rejectBtn.onclick = () => rejectRequest(req.id);
+                
+                actionCell.appendChild(approveBtn);
+                actionCell.appendChild(rejectBtn);
+            } else {
+
+actionCell.innerText = req.status === 'approved' ? 'Completed' : 'Removed';
+                actionCell.style.color = '#888';
+            }
+        });
+    }
+    
+    // Approve deposit request
+    function approveRequest(requestId) {
+        const index = currentRequests.findIndex(r => r.id === requestId);
+        if(index !== -1 && currentRequests[index].status === 'pending') {
+            currentRequests[index].status = 'approved';
+            currentRequests[index].processed = false; // will be picked by casino
+            saveRequests();
+            loadRequests(); // re-render
+            showToast(✅ Approved $${currentRequests[index].amount} - User will receive funds instantly, "success");
+        } else {
+            showToast("❌ Request not found or already processed", "error");
+        }
+    }
+    
+    // Reject deposit request
+    function rejectRequest(requestId) {
+        const index = currentRequests.findIndex(r => r.id === requestId);
+        if(index !== -1 && currentRequests[index].status === 'pending') {
+            currentRequests[index].status = 'rejected';
+            currentRequests[index].processed = true; // no money added
+            saveRequests();
+            loadRequests();
+            showToast(❌ Rejected deposit request for $${currentRequests[index].amount}, "error");
+        }
+    }
+    
+    // Simple toast message
+    function showToast(message, type) {
+        // Create temporary toast element
+        const toast = document.createElement('div');
+
+        toast.innerText = message;
+        toast.style.position = 'fixed';
+        toast.style.bottom = '20px';
+        toast.style.right = '20px';
+        toast.style.backgroundColor = type === 'success' ? '#2e7d32' : '#8b2c2c';
+        toast.style.color = 'white';
+        toast.style.padding = '12px 24px';
+        toast.style.borderRadius = '50px';
+        toast.style.zIndex = '9999';
+        toast.style.fontWeight = 'bold';
+        toast.style.boxShadow = '0 4px 12px black';
+        toast.style.animation = 'fadeInOut 3s ease';
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.remove();
+        }, 3000);
+    }
+    
+    // Add animation keyframes dynamically
+    const style = document.createElement('style');
+    style.textContent = 
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(20px); }
+            10% { opacity: 1; transform: translateY(0); }
+            90% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(20px); }
+        }
+    ;
+    document.head.appendChild(style);
+    
+    // Refresh button
+    document.getElementById("refreshBtn").addEventListener("click", () => {
+        loadRequests();
+        showToast("🔄 Requests refreshed!", "success");
+    });
+    
+    // Listen to storage changes from casino (if any)
+    window.addEventListener('storage', (event) => {
+        if(event.key === 'depositRequests') {
+            loadRequests();
+        }
+    });
+    
+    // Load initial data and also cleanup old rejected/approved older than 1 hour optionally (keep recent)
+    function cleanupOldRequests() {
+        const oneHourAgo = Date.now() - (60 * 60 * 1000);
+        const filtered = currentRequests.filter(req => {
+            // Keep pending requests forever, but remove processed approved/rejected older than 1 hour for cleanliness
+            if(req.status !== 'pending' && req.processed && (req.id < oneHourAgo)) {
+                return false;
+            }
+            return true;
+        });
+        if(filtered.length !== currentRequests.length) {
+            currentRequests = filtered;
+            saveRequests();
+        }
+    }
+    
+    // Initial render
+    loadRequests();
+    cleanupOldRequests();
+    
+    // Auto refresh every 3 seconds for realtime sync (so admin sees new requests instantly)
+    setInterval(() => {
+        loadRequests();
+    }, 3000);
+    
+    // Display welcome info in console
+    console.log("Admin Panel Active | Bkash Number: 01860909272 | Approve deposits to add user balance.");
+</script>
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Admin Panel - Royal Casino Deposit Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0f1e 0%, #0a1a0f 100%);
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+
+        .admin-container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .admin-header {
+            background: #0f0e17dd;
+            backdrop-filter: blur(10px);
+            border-radius: 2rem;
+            padding: 20px 30px;
+            margin-bottom: 30px;
+            border: 1px solid #ffb347;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .admin-header h1 {
+            background: linear-gradient(135deg, #ff9966, #ffd700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 1.8rem;
+        }
+
+        .badge {
+            background: #2e7d32;
+            padding: 8px 18px;
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+            background: #00000077;
+            padding: 10px 20px;
+            border-radius: 60px;
+        }
+
+        .stats span {
+            color: #ffd966;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        /* Main Panel */
+        .admin-panel {
+            background: #131410dd;
+            backdrop-filter: blur(8px);
+            border-radius: 2rem;
+            padding: 25px;
+            border: 1px solid #ffb34788;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            color: #ffcf4a;
+            border-left: 5px solid #ffb347;
+            padding-left: 18px;
+            margin-bottom: 25px;
+        }
+
+        /* Requests Table */
+        .requests-table {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #1e201ad9;
+            border-radius: 1.5rem;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 14px 12px;
+            text-align: left;
+            border-bottom: 1px solid #ffb34744;
+        }
+
+        th {
+            background: #ffb34722;
+            color: #ffd966;
+            font-weight: bold;
+        }
+
+        td {
+            color: #f0e6d0;
+        }
+
+        .pending-badge {
+            background: #ff9800;
+            color: #1e1e1e;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            display: inline-block;
+        }
+
+        .approved-badge {
+            background: #2e7d32;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .btn-approve {
+            background: #2e7d32;
+            border: none;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-right: 8px;
+            transition: 0.2s;
+        }
+
+        .btn-reject {
+            background: #8b2c2c;
+            border: none;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .btn-approve:hover, .btn-reject:hover {
+            transform: scale(0.95);
+            opacity: 0.9;
+        }
+
+        .empty-row {
+            text-align: center;
+
+padding: 40px;
+            color: #aaa;
+        }
+
+        /* Withdrawal Section */
+        .withdraw-section {
+            margin-top: 35px;
+            background: #1f2a1faa;
+            border-radius: 1.5rem;
+            padding: 20px;
+        }
+
+        .info-card {
+            background: #00000055;
+            border-radius: 1rem;
+            padding: 15px;
+            margin-top: 20px;
+            border: 1px solid #ffb34755;
+        }
+
+        .bkash-number {
+            font-size: 1.5rem;
+            color: #ff7b9c;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #aaa;
+            font-size: 0.8rem;
+        }
+
+        .refresh-btn {
+            background: #ffb347;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 15px;
+        }
+
+        .total-amount {
+            color: #4caf50;
+            font-size: 1.2rem;
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        @media (max-width: 768px) {
+            th, td {
+                padding: 8px 6px;
+                font-size: 0.8rem;
+            }
+            .admin-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="admin-container">
+    <div class="admin-header">
+        <div>
+            <h1>👑 ROYAL CASINO - ADMIN DASHBOARD</h1>
+            <p style="color: #ffd966; margin-top: 5px;">Deposit Approval & Management System</p>
+        </div>
+        <div class="stats">
+            <div>💰 Total Pending: $<span id="totalPendingAmount">0.00</span></div>
+            <div>📋 Pending Requests: <span id="pendingCount">0</span></div>
+            <button class="refresh-btn" id="refreshBtn">🔄 REFRESH</button>
+        </div>
+    </div>
+
+    <div class="admin-panel">
+        <div class="section-title">
+            📥 PENDING DEPOSIT REQUESTS (Bkash: 01860909272)
+        </div>
+        <div class="requests-table">
+            <table id="requestsTable">
+                <thead>
+                    <tr><th>ID</th><th>Amount ($)</th><th>Transaction ID</th><th>Date & Time</th><th>Status</th><th>Action</th></tr>
+                </thead>
+                <tbody id="requestsBody">
+                    <tr><td colspan="6" class="empty-row">Loading requests...</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="withdraw-section">
+            <div class="section-title" style="margin-top: 0;">💸 WITHDRAWAL INFORMATION</div>
+            <div class="info-card">
+                <p>📞 <strong>Bkash Number for Withdrawals:</strong> <span class="bkash-number">01860909272</span></p>
+                <p>✅ Users request withdrawals directly from casino page. Funds are deducted automatically from user balance.</p>
+                <p>🔐 As admin, you only need to <strong>APPROVE or REJECT</strong> deposit requests after verifying transaction ID.</p>
+                <p style="margin-top: 10px; color: #ffaa66;">⚠️ Important: When you click APPROVE, the amount will be instantly added to the user's casino balance via localStorage sync.</p>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <h3>📌 How it works:</h3>
+            <ol style="margin-left: 20px; margin-top: 10px; line-height: 1.8;">
+                <li>User submits deposit request with Bkash Transaction ID (sent to number 01860909272).</li>
+                <li>Request appears here in Admin Panel with PENDING status.</li>
+                <li>Admin verifies the transaction ID manually (check Bkash app).</li>
+                <li>Click <strong style="color:#4caf50;">APPROVE</strong> → Money added to user balance instantly.</li>
+                <li>Click <strong style="color:#f44336;">REJECT</strong> → Request removed.</li>
+                <li>User's casino page auto-detects approval and updates
+
+balance in real-time.</li>
+            </ol>
+        </div>
+    </div>
+    <footer>
+        🔐 Secure Admin Panel | Only accessible to casino managers | Deposits via Bkash 01860909272
+    </footer>
+</div>
+
+<script>
+    // ======================= ADMIN PANEL LOGIC =======================
+    // Uses localStorage to share deposit requests between casino & admin
+    
+    let currentRequests = [];
+    
+    // Load requests from localStorage
+    function loadRequests() {
+        let stored = localStorage.getItem("depositRequests");
+        if(stored) {
+            currentRequests = JSON.parse(stored);
+        } else {
+            currentRequests = [];
+        }
+        // Filter out any requests that are already processed fully (just to keep clean)
+        // But we keep all pending, approved, rejected.
+        renderTable();
+        updateStats();
+    }
+    
+    // Save requests to localStorage
+
+    function saveRequests() {
+        localStorage.setItem("depositRequests", JSON.stringify(currentRequests));
+        // Trigger storage event so casino page can update instantly
+        window.dispatchEvent(new StorageEvent('storage', {
+            key: 'depositRequests',
+            newValue: JSON.stringify(currentRequests)
+        }));
+    }
+    
+    // Update statistics
+    function updateStats() {
+        const pending = currentRequests.filter(r => r.status === 'pending');
+        const totalPending = pending.reduce((sum, r) => sum + r.amount, 0);
+        document.getElementById("totalPendingAmount").innerText = totalPending.toFixed(2);
+        document.getElementById("pendingCount").innerText = pending.length;
+    }
+    
+    // Render table
+    function renderTable() {
+        const tbody = document.getElementById("requestsBody");
+        if(!tbody) return;
+        
+        const pendingRequests = currentRequests.filter(r => r.status === 'pending');
+        const approvedOrRejected = currentRequests.filter(r => r.status !== 'pending');
+        // Show pending first, then history
+        const allDisplay = [...pendingRequests, ...approvedOrRejected];
+        
+        if(allDisplay.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="6" class="empty-row">✅ No deposit requests. All clear!</td></tr>';
+            return;
+        }
+        
+        tbody.innerHTML = "";
+        allDisplay.forEach(req => {
+            const row = tbody.insertRow();
+            row.insertCell(0).innerText = req.id;
+            row.insertCell(1).innerHTML = <strong>$${req.amount.toFixed(2)}</strong>;
+            row.insertCell(2).innerText = req.transactionId.length > 20 ? req.transactionId.substring(0,18)+'...' : req.transactionId;
+            row.insertCell(3).innerText = req.timestamp || new Date(req.id).toLocaleString();
+            
+            // Status cell
+            const statusCell = row.insertCell(4);
+            if(req.status === 'pending') {
+                statusCell.innerHTML = '<span class="pending-badge">⏳ PENDING</span>';
+            } else if(req.status === 'approved') {
+                statusCell.innerHTML = '<span class="approved-badge">✅ APPROVED</span>';
+            } else if(req.status === 'rejected') {
+                statusCell.innerHTML = '<span class="pending-badge" style="background:#8b2c2c;">❌ REJECTED</span>';
+            }
+            
+            // Action cell
+            const actionCell = row.insertCell(5);
+            if(req.status === 'pending') {
+                const approveBtn = document.createElement('button');
+                approveBtn.innerText = '✔ APPROVE';
+                approveBtn.className = 'btn-approve';
+                approveBtn.onclick = () => approveRequest(req.id);
+                
+                const rejectBtn = document.createElement('button');
+                rejectBtn.innerText = '✖ REJECT';
+                rejectBtn.className = 'btn-reject';
+                rejectBtn.onclick = () => rejectRequest(req.id);
+                
+                actionCell.appendChild(approveBtn);
+                actionCell.appendChild(rejectBtn);
+            } else {
+
+actionCell.innerText = req.status === 'approved' ? 'Completed' : 'Removed';
+                actionCell.style.color = '#888';
+            }
+        });
+    }
+    
+    // Approve deposit request
+    function approveRequest(requestId) {
+        const index = currentRequests.findIndex(r => r.id === requestId);
+        if(index !== -1 && currentRequests[index].status === 'pending') {
+            currentRequests[index].status = 'approved';
+            currentRequests[index].processed = false; // will be picked by casino
+            saveRequests();
+            loadRequests(); // re-render
+            showToast(✅ Approved $${currentRequests[index].amount} - User will receive funds instantly, "success");
+
+        } else {
+            showToast("❌ Request not found or already processed", "error");
+        }
+    }
+    
+    // Reject deposit request
+    function rejectRequest(requestId) {
+        const index = currentRequests.findIndex(r => r.id === requestId);
+        if(index !== -1 && currentRequests[index].status === 'pending') {
+            currentRequests[index].status = 'rejected';
+            currentRequests[index].processed = true; // no money added
+            saveRequests();
+            loadRequests();
+            showToast(❌ Rejected deposit request for $${currentRequests[index].amount}, "error");
+        }
+    }
+    
+    // Simple toast message
+    function showToast(message, type) {
+        // Create temporary toast element
+        const toast = document.createElement('div');
+        toast.innerText = message;
+        toast.style.position = 'fixed';
+        toast.style.bottom = '20px';
+        toast.style.right = '20px';
+        toast.style.backgroundColor = type === 'success' ? '#2e7d32' : '#8b2c2c';
+        toast.style.color = 'white';
+        toast.style.padding = '12px 24px';
+        toast.style.borderRadius = '50px';
+        toast.style.zIndex = '9999';
+        toast.style.fontWeight = 'bold';
+        toast.style.boxShadow = '0 4px 12px black';
+        toast.style.animation = 'fadeInOut 3s ease';
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.remove();
+        }, 3000);
+    }
+    
+    // Add animation keyframes dynamically
+    const style = document.createElement('style');
+    style.textContent = 
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(20px); }
+            10% { opacity: 1; transform: translateY(0); }
+            90% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(20px); }
+        }
+    ;
+    document.head.appendChild(style);
+    
+    // Refresh button
+    document.getElementById("refreshBtn").addEventListener("click", () => {
+        loadRequests();
+        showToast("🔄 Requests refreshed!", "success");
+    });
+    
+    // Listen to storage changes from casino (if any)
+    window.addEventListener('storage', (event) => {
+        if(event.key === 'depositRequests') {
+            loadRequests();
+        }
+    });
+    
+    // Load initial data and also cleanup old rejected/approved older than 1 hour optionally (keep recent)
+    function cleanupOldRequests() {
+        const oneHourAgo = Date.now() - (60 * 60 * 1000);
+        const filtered = currentRequests.filter(req => {
+            // Keep pending requests forever, but remove processed approved/rejected older than 1 hour for cleanliness
+            if(req.status !== 'pending' && req.processed && (req.id < oneHourAgo)) {
+                return false;
+            }
+            return true;
+        });
+        if(filtered.length !== currentRequests.length) {
+            currentRequests = filtered;
+            saveRequests();
+        }
+    }
+    
+    // Initial render
+    loadRequests();
+    cleanupOldRequests();
+    
+    // Auto refresh every 3 seconds for realtime sync (so admin sees new requests instantly)
+    setInterval(() => {
+        loadRequests();
+    }, 3000);
+    
+    // Display welcome info in console
+    console.log("Admin Panel Active | Bkash Number: 01860909272 | Approve deposits to add user balance.");
+</script>
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Admin Panel - Royal Casino Deposit Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0f1e 0%, #0a1a0f 100%);
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+
+        .admin-container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .admin-header {
+            background: #0f0e17dd;
+            backdrop-filter: blur(10px);
+            border-radius: 2rem;
+            padding: 20px 30px;
+            margin-bottom: 30px;
+            border: 1px solid #ffb347;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .admin-header h1 {
+            background: linear-gradient(135deg, #ff9966, #ffd700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 1.8rem;
+        }
+
+        .badge {
+            background: #2e7d32;
+            padding: 8px 18px;
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+            background: #00000077;
+            padding: 10px 20px;
+            border-radius: 60px;
+        }
+
+        .stats span {
+            color: #ffd966;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        /* Main Panel */
+        .admin-panel {
+            background: #131410dd;
+            backdrop-filter: blur(8px);
+            border-radius: 2rem;
+            padding: 25px;
+            border: 1px solid #ffb34788;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            color: #ffcf4a;
+            border-left: 5px solid #ffb347;
+            padding-left: 18px;
+            margin-bottom: 25px;
+        }
+
+        /* Requests Table */
+        .requests-table {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #1e201ad9;
+            border-radius: 1.5rem;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 14px 12px;
+            text-align: left;
+            border-bottom: 1px solid #ffb34744;
+        }
+
+        th {
+            background: #ffb34722;
+            color: #ffd966;
+            font-weight: bold;
+        }
+
+        td {
+            color: #f0e6d0;
+        }
+
+        .pending-badge {
+            background: #ff9800;
+            color: #1e1e1e;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            display: inline-block;
+        }
+
+        .approved-badge {
+            background: #2e7d32;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .btn-approve {
+            background: #2e7d32;
+            border: none;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-right: 8px;
+            transition: 0.2s;
+        }
+
+        .btn-reject {
+            background: #8b2c2c;
+            border: none;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .btn-approve:hover, .btn-reject:hover {
+            transform: scale(0.95);
+            opacity: 0.9;
+        }
+
+        .empty-row {
+            text-align: center;
+
+padding: 40px;
+            color: #aaa;
+        }
+
+        /* Withdrawal Section */
+        .withdraw-section {
+            margin-top: 35px;
+            background: #1f2a1faa;
+            border-radius: 1.5rem;
+            padding: 20px;
+        }
+
+        .info-card {
+            background: #00000055;
+            border-radius: 1rem;
+            padding: 15px;
+            margin-top: 20px;
+            border: 1px solid #ffb34755;
+        }
+
+        .bkash-number {
+            font-size: 1.5rem;
+            color: #ff7b9c;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #aaa;
+            font-size: 0.8rem;
+        }
+
+        .refresh-btn {
+            background: #ffb347;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 15px;
+        }
+
+        .total-amount {
+            color: #4caf50;
+            font-size: 1.2rem;
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        @media (max-width: 768px) {
+            th, td {
+                padding: 8px 6px;
+                font-size: 0.8rem;
+            }
+            .admin-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="admin-container">
+    <div class="admin-header">
+        <div>
+            <h1>👑 ROYAL CASINO - ADMIN DASHBOARD</h1>
+            <p style="color: #ffd966; margin-top: 5px;">Deposit Approval & Management System</p>
+        </div>
+        <div class="stats">
+            <div>💰 Total Pending: $<span id="totalPendingAmount">0.00</span></div>
+            <div>📋 Pending Requests: <span id="pendingCount">0</span></div>
+            <button class="refresh-btn" id="refreshBtn">🔄 REFRESH</button>
+        </div>
+    </div>
+
+    <div class="admin-panel">
+        <div class="section-title">
+            📥 PENDING DEPOSIT REQUESTS (Bkash: 01860909272)
+        </div>
+        <div class="requests-table">
+            <table id="requestsTable">
+                <thead>
+                    <tr><th>ID</th><th>Amount ($)</th><th>Transaction ID</th><th>Date & Time</th><th>Status</th><th>Action</th></tr>
+                </thead>
+                <tbody id="requestsBody">
+                    <tr><td colspan="6" class="empty-row">Loading requests...</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="withdraw-section">
+            <div class="section-title" style="margin-top: 0;">💸 WITHDRAWAL INFORMATION</div>
+            <div class="info-card">
+                <p>📞 <strong>Bkash Number for Withdrawals:</strong> <span class="bkash-number">01860909272</span></p>
+                <p>✅ Users request withdrawals directly from casino page. Funds are deducted automatically from user balance.</p>
+                <p>🔐 As admin, you only need to <strong>APPROVE or REJECT</strong> deposit requests after verifying transaction ID.</p>
+                <p style="margin-top: 10px; color: #ffaa66;">⚠️ Important: When you click APPROVE, the amount will be instantly added to the user's casino balance via localStorage sync.</p>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <h3>📌 How it works:</h3>
+            <ol style="margin-left: 20px; margin-top: 10px; line-height: 1.8;">
+                <li>User submits deposit request with Bkash Transaction ID (sent to number 01860909272).</li>
+                <li>Request appears here in Admin Panel with PENDING status.</li>
+                <li>Admin verifies the transaction ID manually (check Bkash app).</li>
+                <li>Click <strong style="color:#4caf50;">APPROVE</strong> → Money added to user balance instantly.</li>
+                <li>Click <strong style="color:#f44336;">REJECT</strong> → Request removed.</li>
+                <li>User's casino page auto-detects approval and updates
+
+balance in real-time.</li>
+            </ol>
+        </div>
+    </div>
+    <footer>
+        🔐 Secure Admin Panel | Only accessible to casino managers | Deposits via Bkash 01860909272
+    </footer>
+</div>
+
+<script>
+    // ======================= ADMIN PANEL LOGIC =======================
+    // Uses localStorage to share deposit requests between casino & admin
+
+    
+    let currentRequests = [];
+    
+    // Load requests from localStorage
+    function loadRequests() {
+        let stored = localStorage.getItem("depositRequests");
+        if(stored) {
+            currentRequests = JSON.parse(stored);
+        } else {
+            currentRequests = [];
+        }
+        // Filter out any requests that are already processed fully (just to keep clean)
+        // But we keep all pending, approved, rejected.
+        renderTable();
+        updateStats();
+    }
+    
+    // Save requests to localStorage
+    function saveRequests() {
+        localStorage.setItem("depositRequests", JSON.stringify(currentRequests));
+        // Trigger storage event so casino page can update instantly
+        window.dispatchEvent(new StorageEvent('storage', {
+            key: 'depositRequests',
+            newValue: JSON.stringify(currentRequests)
+        }));
+    }
+    
+    // Update statistics
+    function updateStats() {
+        const pending = currentRequests.filter(r => r.status === 'pending');
+        const totalPending = pending.reduce((sum, r) => sum + r.amount, 0);
+        document.getElementById("totalPendingAmount").innerText = totalPending.toFixed(2);
+        document.getElementById("pendingCount").innerText = pending.length;
+    }
+    
+    // Render table
+    function renderTable() {
+        const tbody = document.getElementById("requestsBody");
+        if(!tbody) return;
+        
+        const pendingRequests = currentRequests.filter(r => r.status === 'pending');
+        const approvedOrRejected = currentRequests.filter(r => r.status !== 'pending');
+        // Show pending first, then history
+        const allDisplay = [...pendingRequests, ...approvedOrRejected];
+        
+        if(allDisplay.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="6" class="empty-row">✅ No deposit requests. All clear!</td></tr>';
+            return;
+        }
+        
+        tbody.innerHTML = "";
+        allDisplay.forEach(req => {
+            const row = tbody.insertRow();
+            row.insertCell(0).innerText = req.id;
+            row.insertCell(1).innerHTML = <strong>$${req.amount.toFixed(2)}</strong>;
+            row.insertCell(2).innerText = req.transactionId.length > 20 ? req.transactionId.substring(0,18)+'...' : req.transactionId;
+            row.insertCell(3).innerText = req.timestamp || new Date(req.id).toLocaleString();
+            
+            // Status cell
+            const statusCell = row.insertCell(4);
+            if(req.status === 'pending') {
+                statusCell.innerHTML = '<span class="pending-badge">⏳ PENDING</span>';
+            } else if(req.status === 'approved') {
+                statusCell.innerHTML = '<span class="approved-badge">✅ APPROVED</span>';
+            } else if(req.status === 'rejected') {
+                statusCell.innerHTML = '<span class="pending-badge" style="background:#8b2c2c;">❌ REJECTED</span>';
+            }
+            
+            // Action cell
+            const actionCell = row.insertCell(5);
+            if(req.status === 'pending') {
+                const approveBtn = document.createElement('button');
+                approveBtn.innerText = '✔ APPROVE';
+                approveBtn.className = 'btn-approve';
+                approveBtn.onclick = () => approveRequest(req.id);
+                
+                const rejectBtn = document.createElement('button');
+                rejectBtn.innerText = '✖ REJECT';
+                rejectBtn.className = 'btn-reject';
+                rejectBtn.onclick = () => rejectRequest(req.id);
+                
+                actionCell.appendChild(approveBtn);
+                actionCell.appendChild(rejectBtn);
+            } else {
+
+actionCell.innerText = req.status === 'approved' ? 'Completed' : 'Removed';
+                actionCell.style.color = '#888';
+
+            }
+        });
+    }
+    
+    // Approve deposit request
+    function approveRequest(requestId) {
+        const index = currentRequests.findIndex(r => r.id === requestId);
+        if(index !== -1 && currentRequests[index].status === 'pending') {
+            currentRequests[index].status = 'approved';
+            currentRequests[index].processed = false; // will be picked by casino
+            saveRequests();
+            loadRequests(); // re-render
+            showToast(✅ Approved $${currentRequests[index].amount} - User will receive funds instantly, "success");
+        } else {
+            showToast("❌ Request not found or already processed", "error");
+        }
+    }
+    
+    // Reject deposit request
+    function rejectRequest(requestId) {
+        const index = currentRequests.findIndex(r => r.id === requestId);
+        if(index !== -1 && currentRequests[index].status === 'pending') {
+            currentRequests[index].status = 'rejected';
+            currentRequests[index].processed = true; // no money added
+            saveRequests();
+            loadRequests();
+            showToast(❌ Rejected deposit request for $${currentRequests[index].amount}, "error");
+        }
+    }
+    
+    // Simple toast message
+    function showToast(message, type) {
+        // Create temporary toast element
+        const toast = document.createElement('div');
+        toast.innerText = message;
+        toast.style.position = 'fixed';
+        toast.style.bottom = '20px';
+        toast.style.right = '20px';
+        toast.style.backgroundColor = type === 'success' ? '#2e7d32' : '#8b2c2c';
+        toast.style.color = 'white';
+        toast.style.padding = '12px 24px';
+        toast.style.borderRadius = '50px';
+        toast.style.zIndex = '9999';
+        toast.style.fontWeight = 'bold';
+        toast.style.boxShadow = '0 4px 12px black';
+        toast.style.animation = 'fadeInOut 3s ease';
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.remove();
+        }, 3000);
+    }
+    
+    // Add animation keyframes dynamically
+    const style = document.createElement('style');
+    style.textContent = 
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(20px); }
+            10% { opacity: 1; transform: translateY(0); }
+            90% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(20px); }
+        }
+    ;
+    document.head.appendChild(style);
+    
+    // Refresh button
+    document.getElementById("refreshBtn").addEventListener("click", () => {
+        loadRequests();
+        showToast("🔄 Requests refreshed!", "success");
+    });
+    
+    // Listen to storage changes from casino (if any)
+    window.addEventListener('storage', (event) => {
+        if(event.key === 'depositRequests') {
+            loadRequests();
+        }
+    });
+    
+    // Load initial data and also cleanup old rejected/approved older than 1 hour optionally (keep recent)
+    function cleanupOldRequests() {
+        const oneHourAgo = Date.now() - (60 * 60 * 1000);
+        const filtered = currentRequests.filter(req => {
+            // Keep pending requests forever, but remove processed approved/rejected older than 1 hour for cleanliness
+            if(req.status !== 'pending' && req.processed && (req.id < oneHourAgo)) {
+                return false;
+            }
+            return true;
+        });
+        if(filtered.length !== currentRequests.length) {
+            currentRequests = filtered;
+            saveRequests();
+        }
+    }
+    
+    // Initial render
+    loadRequests();
+    cleanupOldRequests();
+    
+    // Auto refresh every 3 seconds for realtime sync (so admin sees new requests instantly)
+    setInterval(() => {
+        loadRequests();
+    }, 3000);
+    
+    // Display welcome info in console
+    console.log("Admin Panel Active | Bkash Number: 01860909272 | Approve deposits to add user balance.");
+</script>
+</body>
+
+</html>ST STEVENX:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Trading Pro</title>
+
+<script src="https://s3.tradingview.com/tv.js"></script>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#0f172a;
+color:white;
+}
+
+.header{
+background:#111827;
+padding:15px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid #1f2937;
+}
+
+.logo{
+font-size:24px;
+font-weight:bold;
+color:#00ff99;
+}
+
+.balance{
+font-size:20px;
+font-weight:bold;
+}
+
+.container{
+padding:20px;
+}
+
+.controls{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:20px;
+}
+
+select,input{
+padding:12px;
+background:#1e293b;
+border:none;
+border-radius:10px;
+color:white;
+}
+
+button{
+padding:12px 20px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.buy{
+background:#00c853;
+color:white;
+}
+
+.sell{
+background:#ff1744;
+color:white;
+}
+
+.main{
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:20px;
+}
+
+.card{
+background:#1e293b;
+padding:15px;
+border-radius:15px;
+}
+
+#tvchart{
+height:600px;
+width:100%;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+padding:10px;
+border-bottom:1px solid rgba(255,255,255,.1);
+text-align:left;
+}
+
+.profit{
+color:#00ff99;
+}
+
+.loss{
+color:#ff5252;
+}
+
+@media(max-width:900px){
+
+.main{
+grid-template-columns:1fr;
+}
+
+#tvchart{
+height:400px;
+}
+
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+<div class="logo">TRADING PRO</div>
+<div class="balance">
+Balance: $<span id="balance">10000.00</span>
+</div>
+</div>
+
+<div class="container">
+
+<div class="controls">
+
+<select id="pair">
+<option value="FX:EURUSD">EUR/USD</option>
+<option value="FX:GBPUSD">GBP/USD</option>
+<option value="FX:USDJPY">USD/JPY</option>
+<option value="BINANCE:BTCUSDT">BTC/USD</option>
+<option value="BINANCE:ETHUSDT">ETH/USD</option>
+</select>
+
+<input type="number" id="amount" value="100" min="1">
+
+<button class="buy" onclick="trade('BUY')">
+BUY
+</button>
+
+<button class="sell" onclick="trade('SELL')">
+SELL
+</button>
+
+</div>
+
+<div class="main">
+
+<div class="card">
+<div id="tvchart"></div>
+</div>
+
+<div>
+
+<div class="card" style="margin-bottom:20px;">
+<h3>Open Positions</h3>
+<br>
+
+<table>
+<thead>
+<tr>
+<th>Pair</th>
+<th>Type</th>
+<th>Amount</th>
+</tr>
+</thead>
+
+<tbody id="positions">
+</tbody>
+
+</table>
+
+</div>
+
+<div class="card" style="margin-bottom:20px;">
+<h3>Trade History</h3>
+<br>
+
+<table>
+<thead>
+<tr>
+<th>Pair</th>
+<th>Type</th>
+<th>P/L</th>
+</tr>
+</thead>
+
+<tbody id="history">
+</tbody>
+
+</table>
+
+</div>
+
+<div class="card">
+
+<h3>Leaderboard</h3>
+<br>
+
+<table>
+
+<tr>
+<td>Alex</td>
+<td class="profit">+$3,200</td>
+</tr>
+
+<tr>
+<td>Emma</td>
+<td class="profit">+$2,800</td>
+</tr>
+
+<tr>
+<td>John</td>
+<td class="profit">+$1,950</td>
+</tr>
+
+<tr>
+<td>You</td>
+<td id="myProfit">$0</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+let balance=10000;
+let totalProfit=0;
+
+function animateBalance(target){
+
+let current=
+parseFloat(
+document.getElementById("balance").innerText
+);
+
+let step=(target-current)/30;
+
+let timer=setInterval(()=>{
+
+current+=step;
+
+document.getElementById("balance").innerText=
+current.toFixed(2);
+
+if(
+(step>0 && current>=target)||
+(step<0 && current<=target)
+){
+document.getElementById("balance").innerText=
+target.toFixed(2);
+clearInterval(timer);
+}
+
+},20);
+
+}
+
+function trade(type){
+
+let amount=
+parseFloat(
+document.getElementById("amount").value
+);
+
+let pair=
+document.getElementById("pair")
+.selectedOptions[0].text;
+
+let pnl=
+((Math.random()*20)-10)/100*amount;
+
+balance+=pnl;
+totalProfit+=pnl;
+
+animateBalance(balance);
+
+document.getElementById("myProfit").innerHTML=
+totalProfit>=0
+?
+'<span class="profit">+$'+
+totalProfit.toFixed(2)+
+'</span>'
+:
+'<span class="loss">$'+
+totalProfit.toFixed(2)+
+'</span>';
+
+document.getElementById("positions")
+.insertAdjacentHTML(
+"afterbegin",
+`
+<tr>
+<td>${pair}</td>
+<td>${type}</td>
+<td>$${amount}</td>
+</tr>
+`
+);
+
+document.getElementById("history")
+.insertAdjacentHTML(
+"afterbegin",
+`
+<tr>
+<td>${pair}</td>
+<td>${type}</td>
+<td
+
+class="${pnl>=0?'profit':'loss'}">
+${pnl>=0?'+':''}$${pnl.toFixed(2)}
+</td>
+</tr>
+`
+);
+
+}
+
+function loadChart(symbol){
+
+document.getElementById("tvchart").innerHTML="";
+
+new TradingView.widget({
+autosize:true,
+symbol:symbol,
+interval:"1",
+timezone:"Etc/UTC",
+theme:"dark",
+style:"1",
+locale:"en",
+toolbar_bg:"#1e293b",
+enable_publishing:false,
+allow_symbol_change:true,
+hide_side_toolbar:false,
+withdateranges:true,
+container_id:"tvchart"
+});
+
+}
+
+loadChart("FX:EURUSD");
+
+document
+.getElementById("pair")
+.addEventListener(
+"change",
+function(){
+loadChart(this.value);
+}
+);
+
+</script>
+
+</body>
+</html>
